@@ -1,0 +1,11 @@
+/* Header */
+.dropdown-item {
+  padding-top: .8em!important;
+  padding-bottom: .8em!important;
+}
+button:focus,
+button {
+  outline: none!important;
+  box-shadow: none!important;
+}
+/* End Header */

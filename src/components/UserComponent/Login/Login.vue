@@ -3,6 +3,7 @@
     <vue-headful
       title="RoFa - Login"
     />
+    login
   </div>
 </template>
 

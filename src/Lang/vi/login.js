@@ -1,6 +1,6 @@
 exports.loginLang = {
   inputUsernamePlaceholder: 'Email, Phone, Userame',
-  inputPasswordPlaceholder: 'Password',
+  inputPasswordPlaceholder: 'Mật khẩu',
   buttonLogin: 'Đăng nhập',
   linkForgotPassword: 'Quên mật khẩu?',
   loginFaild: 'Đăng nhập không thành công',

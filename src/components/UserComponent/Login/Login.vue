@@ -41,8 +41,6 @@ export default {
   data () {
     return {
       loginLang: loginLang,
-      username: '',
-      password: '',
       error_messages: '',
       typePassword: 'password',
       user: new User('', ''),
@@ -50,8 +48,22 @@ export default {
       account_incorrect: false
     }
   },
+  mounted () {
+    this.$parent.changeTab('login')
+  },
   methods: {
     async handleLogin () {
+      var loader = this.$loading.show({
+        container: this.fullPage ? null : this.$refs.formContainer,
+        canCancel: false,
+        onCancel: this.onCancel,
+        color: '#10a7f7',
+        width: 60,
+        height: 60,
+        zIndex: 99999999,
+        backgroundColor: '#fff',
+        loader: 'spinner'
+      })
       this.error_messages = ''
       this.account_incorrect = false
       if (this.user.username && this.user.passwords) {
@@ -59,13 +71,16 @@ export default {
           this.error_messages = ''
           this.account_incorrect = false
           this.$router.push('/')
+          loader.hide()
         }).catch((e) => {
           this.error_messages = loginLang.loginFaild
           this.account_incorrect = true
+          loader.hide()
         })
       } else {
         this.error_messages = loginLang.requiredLogin
         this.account_incorrect = true
+        loader.hide()
       }
     }
   }

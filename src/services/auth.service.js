@@ -18,5 +18,24 @@ class AuthService {
       return localStorage.setItem('user', data.data.token)
     }
   }
+  async register (user) {
+    var data = await postQuerySchema({
+      token: false,
+      data: {
+        first_name: user.firstName,
+        last_name: user.lastName,
+        username: user.username,
+        email: user.email,
+        phone: user.phone,
+        passwords: user.passwords
+      },
+      path: 'customer/create-account'
+    })
+    if (data instanceof Error) {
+      return data
+    } else {
+      return data
+    }
+  }
 }
 export default new AuthService()

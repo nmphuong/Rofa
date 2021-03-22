@@ -55,6 +55,9 @@ export default {
     }
   },
   methods: {
+    changeTab (event) {
+      this.step_amount = event
+    }
   }
 }
 </script>

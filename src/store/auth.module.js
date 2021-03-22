@@ -10,6 +10,9 @@ export const auth = {
   actions: {
     async login ({ commit }, user) {
       return AuthService.login(user)
+    },
+    async register ({ commit }, user) {
+      return AuthService.register(user)
     }
   }
 }

@@ -7,6 +7,7 @@
           <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
           <b-collapse id="nav-collapse" is-nav class="justify-content-center text-center">
             <!-- Right aligned nav items -->
+            <b-nav-item class="px-2" href="#">Trang chủ</b-nav-item>
             <b-navbar-nav class="px-2">
               <b-nav-item-dropdown text="Sản phẩm" right>
                 <b-dropdown-item>Rau Củ Quả</b-dropdown-item>
@@ -20,10 +21,11 @@
               </b-nav-item-dropdown>
             </b-navbar-nav>
             <b-nav-item class="px-2" href="#">Giới Thiệu</b-nav-item>
-            <b-nav-item class="px-2" href="#">Tin Tức</b-nav-item>
+            <b-nav-item class="px-2" href="http://rofa.vn">Tải ứng dụng</b-nav-item>
             <b-nav-item class="px-2" href="#">Liên Hệ</b-nav-item>
-            <b-nav-item class="px-2" href="http://rofa.vn">App Mobile</b-nav-item>
+            <b-nav-item class="px-2" href="#">Bán hàng</b-nav-item>
           </b-collapse>
+          <b-nav-item class="px-2" href="#"><b-icon-power></b-icon-power></b-nav-item>
         </b-navbar>
       </div>
     </section>
@@ -85,6 +87,11 @@ li {
   .navbar-nav .dropdown-menu {
     text-align: center;
     background: rgba(255, 255, 255, 0.5);
+  }
+}
+@media only screen and (min-width: 992px) {
+  .nav-link {
+    font-size: 1rem;
   }
 }
 </style>

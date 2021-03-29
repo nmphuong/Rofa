@@ -11,6 +11,31 @@
       </transition>
       <div class="col-12 p-0 m-0">
         <div class="pb-2">
+          <div class="stepbar">
+            <div class="step_bar pt-2 pb-2">
+              <div class="row p-0 m-0 step">
+                <div class="col-12 m-0 p-0">
+                  <div class="items m-0 p-0 d-flex">
+                    <div class="customer" @click="() => {
+                        loginWith = 'customer'
+                      }">
+                      <span class="h5 text-uppercase">{{loginLang.messageLoginCustomer}}</span>
+                      <div v-bind:class="['_step ', (loginWith === 'customer') ? 'active' : '']"></div>
+                    </div>
+                    &nbsp;-&nbsp;
+                    <div class="seller" @click="() => {
+                        loginWith = 'seller'
+                      }">
+                      <span class="h5 text-uppercase">{{loginLang.messageLoginSeller}}</span>
+                      <div v-bind:class="['_step ', (loginWith === 'seller') ? 'active' : '']"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="pb-2">
           <input v-model="user.username" class="form-control" name="username" type="text" :placeholder="loginLang.inputUsernamePlaceholder">
         </div>
         <div class="pb-2 position-relative">
@@ -45,7 +70,8 @@ export default {
       typePassword: 'password',
       user: new User('', ''),
       loading: false,
-      account_incorrect: false
+      account_incorrect: false,
+      loginWith: 'customer'
     }
   },
   mounted () {
@@ -53,34 +79,45 @@ export default {
   },
   methods: {
     async handleLogin () {
-      var loader = this.$loading.show({
-        container: this.fullPage ? null : this.$refs.formContainer,
-        canCancel: false,
-        onCancel: this.onCancel,
-        color: '#10a7f7',
-        width: 60,
-        height: 60,
-        zIndex: 99999999,
-        backgroundColor: '#fff',
-        loader: 'spinner'
-      })
-      this.error_messages = ''
-      this.account_incorrect = false
-      if (this.user.username && this.user.passwords) {
-        await this.$store.dispatch('auth/login', this.user).then(() => {
-          this.error_messages = ''
-          this.account_incorrect = false
-          this.$router.push('/')
-          loader.hide()
-        }).catch((e) => {
-          this.error_messages = loginLang.loginFaild
+      this.$parent.showLoading()
+      if (this.loginWith === 'customer') {
+        this.error_messages = ''
+        this.account_incorrect = false
+        if (this.user.username && this.user.passwords) {
+          await this.$store.dispatch('auth/loginCustomer', this.user).then(() => {
+            this.error_messages = ''
+            this.account_incorrect = false
+            this.$router.push('/')
+            this.$parent.hideLoading()
+          }).catch((e) => {
+            this.error_messages = loginLang.loginFaild
+            this.account_incorrect = true
+            this.$parent.hideLoading()
+          })
+        } else {
+          this.error_messages = loginLang.requiredLogin
           this.account_incorrect = true
-          loader.hide()
-        })
+          this.$parent.hideLoading()
+        }
       } else {
-        this.error_messages = loginLang.requiredLogin
-        this.account_incorrect = true
-        loader.hide()
+        this.error_messages = ''
+        this.account_incorrect = false
+        if (this.user.username && this.user.passwords) {
+          await this.$store.dispatch('auth/loginSeller', this.user).then(() => {
+            this.error_messages = ''
+            this.account_incorrect = false
+            this.$router.push('/')
+            this.$parent.hideLoading()
+          }).catch((e) => {
+            this.error_messages = loginLang.loginFaild
+            this.account_incorrect = true
+            this.$parent.hideLoading()
+          })
+        } else {
+          this.error_messages = loginLang.requiredLogin
+          this.account_incorrect = true
+          this.$parent.hideLoading()
+        }
       }
     }
   }

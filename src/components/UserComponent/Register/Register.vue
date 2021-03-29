@@ -93,20 +93,10 @@ export default {
   },
   methods: {
     async handleRegister () {
-      var loader = this.$loading.show({
-        container: this.fullPage ? null : this.$refs.formContainer,
-        canCancel: false,
-        onCancel: this.onCancel,
-        color: '#10a7f7',
-        width: 60,
-        height: 60,
-        zIndex: 99999999,
-        backgroundColor: '#fff',
-        loader: 'spinner'
-      })
+      this.$parent.showLoading()
       await this.$validator.validate().then(async (valid) => {
         if (!valid) {
-          loader.hide()
+          this.$parent.hideLoading()
           return false
         } else {
           this.error_messages = ''
@@ -114,12 +104,12 @@ export default {
           await this.$store.dispatch('auth/register', this.user).then(() => {
             this.error_messages = ''
             this.account_incorrect = false
-            this.$router.push('/login')
-            loader.hide()
+            this.$router.push('/user/login')
+            this.$parent.hideLoading()
           }).catch((e) => {
             this.error_messages = registerLang.registerFaild
             this.account_incorrect = true
-            loader.hide()
+            this.$parent.hideLoading()
           })
         }
       })

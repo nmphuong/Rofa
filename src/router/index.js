@@ -1,9 +1,12 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+
 import Authenticate from '@/components/UserComponent/Authenticate'
 import Login from '@/components/UserComponent/Login/Login'
 import Register from '@/components/UserComponent/Register/Register'
+
 import MasterPage from '@/components/MainComponent/MasterPageComponent'
+import HomePage from '@/components/HomeComponent/HomeComponent'
 
 Vue.use(Router)
 
@@ -18,12 +21,12 @@ export default new Router({
       component: Authenticate,
       children: [
         {
-          path: '/login',
+          path: 'login',
           name: 'Login',
           component: Login
         },
         {
-          path: '/register',
+          path: 'register',
           name: 'Register',
           component: Register
         }
@@ -32,7 +35,14 @@ export default new Router({
     {
       path: '/',
       name: 'MasterPage',
-      component: MasterPage
+      component: MasterPage,
+      children: [
+        {
+          path: '/',
+          name: 'HomePage',
+          component: HomePage
+        }
+      ]
     }
   ]
 })

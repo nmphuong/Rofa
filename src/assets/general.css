@@ -1,3 +1,6 @@
+* {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
 /* Header */
 .dropdown-item {
   padding-top: .8em!important;
@@ -14,6 +17,27 @@ input:focus {
 }
 a {
   text-decoration: none!important;
+}
+.__title-step {
+  background: #26a026;
+  display: inline-block;
+  clip-path: polygon(0px 0px, 70% 0%, 100% 100%, 0% 100%);
+  color: #fff;
+}
+.bg-title {
+  background: #cbcbcb;
+}
+.btn-buy-bg-custorm {
+  background: #26a026;
+  color: #fff;
+  border-radius: 50px!important;
+}
+.name-product {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 /* End custom css */
 /* Animation */

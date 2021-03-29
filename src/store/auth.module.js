@@ -8,8 +8,11 @@ export const auth = {
   namespaced: true,
   state: initialState,
   actions: {
-    async login ({ commit }, user) {
-      return AuthService.login(user)
+    async loginCustomer ({ commit }, user) {
+      return AuthService.loginCustomer(user)
+    },
+    async loginSeller ({ commit }, user) {
+      return AuthService.loginSeller(user)
     },
     async register ({ commit }, user) {
       return AuthService.register(user)

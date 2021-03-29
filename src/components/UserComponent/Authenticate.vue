@@ -10,7 +10,7 @@
                   <div class="items m-0 p-0 d-flex">
                     <div class="login" @click="() => {
                         step_amount = 'login'
-                        this.$router.push('/login')
+                        this.$router.push('/user/login')
                       }">
                       <span class="h5">{{authenLang.login}}</span>
                       <div v-bind:class="['_step ', (step_amount === 'login') ? 'active' : '']"></div>
@@ -18,7 +18,7 @@
                     &nbsp;-&nbsp;
                     <div class="register" @click="() => {
                         step_amount = 'register'
-                        this.$router.push('/register')
+                        this.$router.push('/user/register')
                       }">
                       <span class="h5">{{authenLang.register}}</span>
                       <div v-bind:class="['_step ', (step_amount === 'register') ? 'active' : '']"></div>
@@ -33,7 +33,7 @@
               <div class="col-12 p-0 m-0 d-flex justify-content-center">
                 <div class="w-75 py-5">
                   <div class="control input">
-                    <router-view/>
+                    <router-view></router-view>
                   </div>
                 </div>
               </div>
@@ -51,12 +51,29 @@ export default {
   data () {
     return {
       step_amount: 'login',
-      authenLang: authenLang
+      authenLang: authenLang,
+      loading: null
     }
   },
   methods: {
     changeTab (event) {
       this.step_amount = event
+    },
+    showLoading () {
+      this.loading = this.$loading.show({
+        container: this.fullPage ? null : this.$refs.formContainer,
+        canCancel: false,
+        onCancel: this.onCancel,
+        color: '#10a7f7',
+        width: 60,
+        height: 60,
+        zIndex: 99999999,
+        backgroundColor: '#fff',
+        loader: 'spinner'
+      })
+    },
+    hideLoading () {
+      this.loading.hide()
     }
   }
 }

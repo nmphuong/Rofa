@@ -10,7 +10,7 @@
           <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
           <b-collapse id="nav-collapse" is-nav class="justify-content-start text-center">
               <b-nav-item class="px-0" @click="() => {this.$router.push('/')}">Trang chủ</b-nav-item>
-              <b-nav-item class="px-0" href="#">Giới Thiệu</b-nav-item>
+              <b-nav-item class="px-0" to="/gioi-thieu">Giới Thiệu</b-nav-item>
               <b-navbar-nav class="px-1">
                 <b-nav-item-dropdown text="Sản phẩm" right>
                   <b-dropdown-item>Đặc Sản vùng miền</b-dropdown-item>
@@ -48,7 +48,7 @@ img.logo {
   height: 70px;
 }
 #header {
-  position: fixed;
+  position: sticky;
   top: 0;
   z-index: 999;
   background: rgba(37, 36, 36, 0.8);

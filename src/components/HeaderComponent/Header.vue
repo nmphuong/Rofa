@@ -30,8 +30,13 @@
               <b-nav-item class="px-0" href="#">{{headerLang.sell}}</b-nav-item>
               <b-nav-item class="px-0" href="#">{{headerLang.contact}}</b-nav-item>
           </b-collapse>
-          <b-nav-item class="px-0" @click="() => {this.$router.push('/user/login')}">{{headerLang.login}}</b-nav-item>
-          <b-nav-item class="px-0" @click="() => {this.$router.push('/user/register')}">{{headerLang.registration}}</b-nav-item>
+          <b-nav-item v-if="infoUser === null" class="px-0" @click="() => {this.$router.push('/user/login')}">{{headerLang.login}}</b-nav-item>
+          <b-nav-item v-if="infoUser === null" class="px-0" @click="() => {this.$router.push('/user/register')}">{{headerLang.registration}}</b-nav-item>
+          <b-nav-item-dropdown class="img__avt" :style="{backgroundImage: 'url(' + infoUser.data.token_data.url_avata + ')'}" v-if="infoUser !== null" right>
+            <b-dropdown-item @click="logout">{{headerLang.logout}}</b-dropdown-item>
+            <b-dropdown-item @click="() => {this.$parent.loginWith('seller')}" v-if="isCustomer === true">{{headerLang.switchSeller}}</b-dropdown-item>
+            <b-dropdown-item @click="() => {this.$parent.loginWith('customer')}" v-if="isSeller === true">{{headerLang.switchCutomer}}</b-dropdown-item>
+          </b-nav-item-dropdown>
         </b-navbar>
       </div>
     </section>
@@ -41,9 +46,21 @@
 <script>
 import { headerLang } from '../../Lang/vi/header'
 export default {
+  props: [
+    'infoUser',
+    'isCustomer',
+    'isSeller'
+  ],
   data () {
     return {
       headerLang: headerLang
+    }
+  },
+  computed: {
+  },
+  methods: {
+    async logout () {
+      this.$parent.logout()
     }
   }
 }
@@ -93,9 +110,22 @@ li {
     display: flex;
     align-items: center;
 }
+.img__avt .dropdown-toggle::after {
+  display: none;
+}
 .nav-item.b-nav-dropdown {
   justify-content: center;
   display: flex;
+}
+.img__avt {
+  width: 50px;
+  height: 50px;
+  background: #d7d7d7 none repeat scroll 0% 0%;
+  border-radius: 50%;
+  content: '';
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 @media only screen and (max-width: 991px) {
   .navbar-nav .dropdown-menu {

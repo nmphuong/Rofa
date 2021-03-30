@@ -4,7 +4,7 @@
       <div class="row p-0 m-0">
         <div class="bg-banner col-12 p-0 m-0">
           <div class="row p-0 m-0">
-            <img class="__img-step w-100 py-2 px-1" :src="Banner" />
+            <img class="__img-step w-100 py-2 px-1" :src="banner" />
           </div>
         </div>
       </div>
@@ -16,7 +16,7 @@
 export default {
   name: 'BannerComponent',
   props: [
-    'Banner'
+    'banner'
   ],
   data () {
     return {

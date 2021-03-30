@@ -7,6 +7,7 @@ import Register from '@/components/UserComponent/Register/Register'
 
 import MasterPage from '@/components/MainComponent/MasterPageComponent'
 import HomePage from '@/components/HomeComponent/HomeComponent'
+
 import Info from '@/components/Info/Info'
 
 Vue.use(Router)
@@ -18,7 +19,6 @@ export default new Router({
   routes: [
     {
       path: '/user',
-      name: 'Authenticate',
       component: Authenticate,
       children: [
         {
@@ -35,7 +35,6 @@ export default new Router({
     },
     {
       path: '/',
-      name: 'MasterPage',
       component: MasterPage,
       children: [
         {

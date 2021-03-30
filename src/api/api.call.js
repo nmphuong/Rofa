@@ -2,8 +2,11 @@ import { api } from './api'
 
 export const getQuerySchema = async (schema) => {
   var headers = {}
-  if (schema.hasOwnProperty('token') && schema.token === true) {
-    headers.Authorization = 'Bearer ' + localStorage.getItem('j6VDAJXFnY-user-rofa')
+  if (schema.hasOwnProperty('tokenCustomer') && schema.tokenCustomer === true) {
+    headers.Authorization = 'Bearer ' + JSON.parse(localStorage.getItem('Oaj0mZteIDsw3vgVxYCbcustomers')).token
+  }
+  if (schema.hasOwnProperty('tokenSeller') && schema.tokenSeller === true) {
+    headers.Authorization = 'Bearer ' + JSON.parse(localStorage.getItem('Oaj0mZteIDsw3vgVxYCbsellers')).token
   }
   var data = await api.get(schema.path, {
     headers: headers
@@ -13,8 +16,11 @@ export const getQuerySchema = async (schema) => {
 export const postQuerySchema = async (schema) => {
   var headers = {
   }
-  if (schema.hasOwnProperty('token') && schema.token === true) {
-    headers.Authorization = 'Bearer ' + localStorage.getItem('j6VDAJXFnY-user-rofa')
+  if (schema.hasOwnProperty('tokenCustomer') && schema.tokenCustomer === true) {
+    headers.Authorization = 'Bearer ' + JSON.parse(localStorage.getItem('Oaj0mZteIDsw3vgVxYCbcustomers')).token
+  }
+  if (schema.hasOwnProperty('tokenSeller') && schema.tokenSeller === true) {
+    headers.Authorization = 'Bearer ' + JSON.parse(localStorage.getItem('Oaj0mZteIDsw3vgVxYCbsellers')).token
   }
   var data = await api.post(schema.path, schema.data, {
     headers: headers
@@ -25,8 +31,11 @@ export const postDataSchema = async (schema) => {
   var headers = {
     'Content-Type': 'multipart/form-data'
   }
-  if (schema.hasOwnProperty('token') && schema.token === true) {
-    headers.Authorization = 'Bearer ' + localStorage.getItem('j6VDAJXFnY-user-rofa')
+  if (schema.hasOwnProperty('tokenCustomer') && schema.tokenCustomer === true) {
+    headers.Authorization = 'Bearer ' + JSON.parse(localStorage.getItem('Oaj0mZteIDsw3vgVxYCbcustomers')).token
+  }
+  if (schema.hasOwnProperty('tokenSeller') && schema.tokenSeller === true) {
+    headers.Authorization = 'Bearer ' + JSON.parse(localStorage.getItem('Oaj0mZteIDsw3vgVxYCbsellers')).token
   }
   var data = await api.post(schema.path, schema.data, {
     headers: headers

@@ -18,6 +18,7 @@
                   <div class="items m-0 p-0 d-flex">
                     <div class="customer" @click="() => {
                         loginWith = 'customer'
+                        this.loginVerify()
                       }">
                       <span class="h5 text-uppercase">{{loginLang.messageLoginCustomer}}</span>
                       <div v-bind:class="['_step ', (loginWith === 'customer') ? 'active' : '']"></div>
@@ -25,6 +26,7 @@
                     &nbsp;-&nbsp;
                     <div class="seller" @click="() => {
                         loginWith = 'seller'
+                        this.loginVerify()
                       }">
                       <span class="h5 text-uppercase">{{loginLang.messageLoginSeller}}</span>
                       <div v-bind:class="['_step ', (loginWith === 'seller') ? 'active' : '']"></div>
@@ -36,10 +38,10 @@
           </div>
         </div>
         <div class="pb-2">
-          <input v-model="user.username" class="form-control" name="username" type="text" :placeholder="loginLang.inputUsernamePlaceholder">
+          <input v-on:keyup.enter="handleLogin" v-model="user.username" class="form-control" name="username" type="text" :placeholder="loginLang.inputUsernamePlaceholder">
         </div>
         <div class="pb-2 position-relative">
-          <input v-model="user.passwords" class="form-control input-password" :type="typePassword" :placeholder="loginLang.inputPasswordPlaceholder">
+          <input v-on:keyup.enter="handleLogin" v-model="user.passwords" class="form-control input-password" :type="typePassword" :placeholder="loginLang.inputPasswordPlaceholder">
           <b-icon-eye v-if="typePassword === 'password'" @click="(typePassword === 'text') ? (typePassword = 'password') : (typePassword = 'text')" class="position-absolute eyes"></b-icon-eye>
           <b-icon-eye-slash v-else @click="(typePassword === 'text') ? (typePassword = 'password') : (typePassword = 'text')" class="position-absolute eyes"></b-icon-eye-slash>
         </div>
@@ -63,6 +65,9 @@ import { loginLang } from '../../../Lang/vi/login'
 import User from '../../../models/user'
 export default {
   name: 'Login',
+  props: [
+    'loginvs'
+  ],
   data () {
     return {
       loginLang: loginLang,
@@ -71,11 +76,12 @@ export default {
       user: new User('', ''),
       loading: false,
       account_incorrect: false,
-      loginWith: 'customer'
+      loginWith: this.loginvs
     }
   },
   mounted () {
     this.$parent.changeTab('login')
+    this.loginVerify()
   },
   methods: {
     async handleLogin () {
@@ -88,6 +94,7 @@ export default {
             this.error_messages = ''
             this.account_incorrect = false
             this.$router.push('/')
+            this.$parent.info()
             this.$parent.hideLoading()
           }).catch((e) => {
             this.error_messages = loginLang.loginFaild
@@ -107,6 +114,7 @@ export default {
             this.error_messages = ''
             this.account_incorrect = false
             this.$router.push('/')
+            this.$parent.info()
             this.$parent.hideLoading()
           }).catch((e) => {
             this.error_messages = loginLang.loginFaild
@@ -117,6 +125,19 @@ export default {
           this.error_messages = loginLang.requiredLogin
           this.account_incorrect = true
           this.$parent.hideLoading()
+        }
+      }
+    },
+    async loginVerify () {
+      if (this.loginWith === 'customer') {
+        var customer = JSON.parse(localStorage.getItem('Oaj0mZteIDsw3vgVxYCbcustomers'))
+        if (customer !== null && customer.loging === true) {
+          this.$router.push('/')
+        }
+      } else if (this.loginWith === 'seller') {
+        var seller = JSON.parse(localStorage.getItem('Oaj0mZteIDsw3vgVxYCbsellers'))
+        if (seller !== null && seller.loging === true) {
+          this.$router.push('/')
         }
       }
     }

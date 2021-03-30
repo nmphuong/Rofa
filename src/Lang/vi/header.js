@@ -11,5 +11,8 @@ exports.headerLang = {
   sell: 'Bán hàng',
   contact: 'Liên Hệ',
   login: 'Đăng nhập',
-  registration: 'Đăng ký'
+  registration: 'Đăng ký',
+  logout: 'Đăng xuất',
+  switchSeller: 'Chuyển qua người bán',
+  switchCutomer: 'Chuyển qua người mua'
 }

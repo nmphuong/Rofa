@@ -1,4 +1,4 @@
-import { postQuerySchema } from '../api/api.call'
+import { getQuerySchema, postQuerySchema } from '../api/api.call'
 
 class AuthService {
   async loginCustomer (user) {
@@ -15,7 +15,13 @@ class AuthService {
     if (data instanceof Error) {
       return data
     } else {
-      return localStorage.setItem('Oaj0mZteIDsw3vgVxYCbcustomers', data.data.token)
+      var Oaj0mZteIDsw3vgVxYCbcustomers = '{"token":"' + data.data.token + '", "loging":' + true + '}'
+      var seller = JSON.parse(localStorage.getItem('Oaj0mZteIDsw3vgVxYCbsellers'))
+      if (seller !== null) {
+        var Oaj0mZteIDsw3vgVxYCbsellers = '{"token":"' + seller.token + '", "loging":' + false + '}'
+        localStorage.setItem('Oaj0mZteIDsw3vgVxYCbsellers', Oaj0mZteIDsw3vgVxYCbsellers)
+      }
+      return localStorage.setItem('Oaj0mZteIDsw3vgVxYCbcustomers', Oaj0mZteIDsw3vgVxYCbcustomers)
     }
   }
   async loginSeller (user) {
@@ -32,7 +38,14 @@ class AuthService {
     if (data instanceof Error) {
       return data
     } else {
-      return localStorage.setItem('Oaj0mZteIDsw3vgVxYCbsellers', data.data.data.token)
+      console.log(data)
+      var Oaj0mZteIDsw3vgVxYCbsellers = '{"token":"' + data.data.data.token + '", "loging":' + true + '}'
+      var customer = JSON.parse(localStorage.getItem('Oaj0mZteIDsw3vgVxYCbcustomers'))
+      if (customer !== null) {
+        var Oaj0mZteIDsw3vgVxYCbcustomers = '{"token":"' + customer.token + '", "loging":' + false + '}'
+        localStorage.setItem('Oaj0mZteIDsw3vgVxYCbcustomers', Oaj0mZteIDsw3vgVxYCbcustomers)
+      }
+      return localStorage.setItem('Oaj0mZteIDsw3vgVxYCbsellers', Oaj0mZteIDsw3vgVxYCbsellers)
     }
   }
   async register (user) {
@@ -47,6 +60,28 @@ class AuthService {
         passwords: user.passwords
       },
       path: 'customer/create-account'
+    })
+    if (data instanceof Error) {
+      return data
+    } else {
+      return data
+    }
+  }
+  async getProfileCustomer () {
+    var data = await getQuerySchema({
+      tokenCustomer: true,
+      path: 'customer/get-info-account'
+    })
+    if (data instanceof Error) {
+      return data
+    } else {
+      return data
+    }
+  }
+  async getProfileSellers () {
+    var data = await getQuerySchema({
+      tokenSeller: true,
+      path: 'sellers/get-info-account'
     })
     if (data instanceof Error) {
       return data

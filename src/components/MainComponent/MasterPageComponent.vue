@@ -22,6 +22,7 @@ export default {
       query: {},
       // Banner
       bannerHome: [],
+      bannerHomeKey: null,
       // End Banner
       // Home
       category: 4,
@@ -64,7 +65,7 @@ export default {
     },
     // Banner
     async handleGetBanner () {
-      await this.$store.dispatch('home/getBanners').then((result) => {
+      await this.$store.dispatch('home/getBanners', this.bannerHomeKey).then((result) => {
         this.bannerHome = result.data.data
       }).catch((e) => {
       })
@@ -74,10 +75,16 @@ export default {
     async handleGetSpecialties () {
       this.query.offset = 0
       this.query.limit = 12
-      await this.$store.dispatch('home/specialties', this.query).then((result) => {
-        this.itemsHome.push({
-          title: 'Đặc sản vùng miền',
-          data: result.data.data
+      this.bannerHomeKey = 4
+      await this.$store.dispatch('home/specialties', this.query).then(async (result) => {
+        await this.$store.dispatch('home/getBanners', this.bannerHomeKey).then(async (banner) => {
+          await this.itemsHome.push({
+            title: 'Đặc sản vùng miền',
+            banner: banner.data.data,
+            link: '/products/specialties',
+            data: result.data.data
+          })
+        }).catch((e) => {
         })
       }).catch((e) => {
       })
@@ -86,10 +93,16 @@ export default {
       this.query.category_id = 4
       this.query.offset = 0
       this.query.limit = 12
-      await this.$store.dispatch('home/getProductHome', this.query).then((result) => {
-        this.itemsHome.push({
-          title: 'Rau Sạch',
-          data: result.data.data
+      this.bannerHomeKey = 4
+      await this.$store.dispatch('home/getProductHome', this.query).then(async (result) => {
+        await this.$store.dispatch('home/getBanners', this.bannerHomeKey).then(async (banner) => {
+          await this.itemsHome.push({
+            title: 'Rau Sạch',
+            banner: banner.data.data,
+            link: '/products/fresh-vegetable',
+            data: result.data.data
+          })
+        }).catch((e) => {
         })
       }).catch((e) => {
       })
@@ -98,10 +111,16 @@ export default {
       this.query.category_id = 7
       this.query.offset = 0
       this.query.limit = 12
-      await this.$store.dispatch('home/getProductHome', this.query).then((result) => {
-        this.itemsHome.push({
-          title: 'Nông Sản',
-          data: result.data.data
+      this.bannerHomeKey = 7
+      await this.$store.dispatch('home/getProductHome', this.query).then(async (result) => {
+        await this.$store.dispatch('home/getBanners', this.bannerHomeKey).then(async (banner) => {
+          await this.itemsHome.push({
+            title: 'Nông Sản',
+            banner: banner.data.data,
+            link: '/products/agricultural',
+            data: result.data.data
+          })
+        }).catch((e) => {
         })
       }).catch((e) => {
       })
@@ -110,10 +129,16 @@ export default {
       this.query.category_id = 1
       this.query.offset = 0
       this.query.limit = 12
-      await this.$store.dispatch('home/getProductHome', this.query).then((result) => {
-        this.itemsHome.push({
-          title: 'Thủy - Hải Sản',
-          data: result.data.data
+      this.bannerHomeKey = 1
+      await this.$store.dispatch('home/getProductHome', this.query).then(async (result) => {
+        await this.$store.dispatch('home/getBanners', this.bannerHomeKey).then(async (banner) => {
+          await this.itemsHome.push({
+            title: 'Thủy - Hải Sản',
+            banner: banner.data.data,
+            link: '/products/sea-food',
+            data: result.data.data
+          })
+        }).catch((e) => {
         })
       }).catch((e) => {
       })
@@ -122,10 +147,16 @@ export default {
       this.query.category_id = 5
       this.query.offset = 0
       this.query.limit = 12
-      await this.$store.dispatch('home/getProductHome', this.query).then((result) => {
-        this.itemsHome.push({
-          title: 'Vật Tư Thức Ăn',
-          data: result.data.data
+      this.bannerHomeKey = 5
+      await this.$store.dispatch('home/getProductHome', this.query).then(async (result) => {
+        await this.$store.dispatch('home/getBanners', this.bannerHomeKey).then(async (banner) => {
+          await this.itemsHome.push({
+            title: 'Vật Tư Thức Ăn',
+            banner: banner.data.data,
+            link: '/products/food-supplies',
+            data: result.data.data
+          })
+        }).catch((e) => {
         })
       }).catch((e) => {
       })

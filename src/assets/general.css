@@ -4,6 +4,12 @@
 body {
   background: #e8eee0;
 }
+.color-main {
+  color: rgb(10, 167, 10) !important;
+}
+.color-bg-main {
+  background: rgb(10, 167, 10) !important;
+}
 /* Header */
 .dropdown-item {
   padding-top: .8em!important;

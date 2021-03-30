@@ -1,6 +1,9 @@
 * {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+body {
+  background: #e8eee0;
+}
 /* Header */
 .dropdown-item {
   padding-top: .8em!important;
@@ -19,13 +22,13 @@ a {
   text-decoration: none!important;
 }
 .__title-step {
-  background: #26a026;
+  background: #e8eee0;
   display: inline-block;
   clip-path: polygon(0px 0px, 70% 0%, 100% 100%, 0% 100%);
-  color: #fff;
+  color: #9dcc5c;
 }
 .bg-title {
-  background: #cbcbcb;
+  background: #abccab;
 }
 .btn-buy-bg-custorm {
   background: #26a026;

@@ -1,21 +1,26 @@
 <template>
-  <div class="title-component col-lg-2 col-md-3 col-sm-4 col-12 p-0 m-0">
+  <div class="title-component col-lg-2 col-md-3 col-sm-4 col-6 p-0 m-0">
     <div class="w-100">
       <div class="row p-0 m-0">
         <div class="col-12 p-0 m-0">
           <div class="row p-0 m-0">
             <div class="col-12 p-1 m-0">
-              <div class="w-100 image">
-                <img class="w-100" :src="datas.image" alt="">
-              </div>
-              <div class="w-100 name-product px-2">
-                <span>{{datas.name}}</span>
-              </div>
-              <div class="w-100 price-product px-2">
-                <span>Giá: {{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(datas.price)}}</span>
-              </div>
-              <div class="w-100 text-center py-1">
-                <button class="btn btn-buy-bg-custorm px-4 py-1">Mua</button>
+              <div class="__card">
+                <div v-if="Array.isArray(datas.images)" class="w-100 image">
+                  <img class="w-100" :src="datas.images[0]" alt="">
+                </div>
+                <div v-else class="w-100 image">
+                  <img class="w-100" :src="datas.images" alt="">
+                </div>
+                <div class="w-100 name-product px-2">
+                  <span>{{datas.name}}</span>
+                </div>
+                <div class="w-100 price-product px-2">
+                  <span>Giá: {{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(datas.price)}}</span>
+                </div>
+                <div class="w-100 text-center py-1">
+                  <button class="btn btn-buy-bg-custorm px-4 py-1">Mua</button>
+                </div>
               </div>
             </div>
           </div>
@@ -46,4 +51,11 @@ export default {
 </script>
 
 <style scoped>
+.image img {
+  height: 150px;
+}
+.__card {
+  border: 1px solid #fff;
+  background: #fff;
+}
 </style>

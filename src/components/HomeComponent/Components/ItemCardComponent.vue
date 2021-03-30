@@ -4,7 +4,7 @@
       <div class="row p-0 m-0">
         <div class="bg-title col-12 p-0 m-0">
           <div class="row p-0 m-0">
-            <div class="__title-step h-100 py-3 px-5 text-uppercase">{{products.title}}</div>
+            <div class="__title-step h-100 py-3 px-5 text-uppercase h5 font-weight-bold">{{products.title}}</div>
           </div>
         </div>
       </div>

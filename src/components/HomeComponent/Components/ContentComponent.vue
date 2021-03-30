@@ -5,7 +5,7 @@
         <div class="col-12 p-0 m-0">
           <div class="row p-0 m-0">
             <div class="col-12 p-1 m-0">
-              <div class="__card">
+              <div class="__card pb-5">
                 <div v-if="Array.isArray(datas.images)" class="w-100 image">
                   <img class="w-100" :src="datas.images[0]" alt="">
                 </div>
@@ -16,11 +16,11 @@
                   <span>{{datas.name}}</span>
                 </div>
                 <div class="w-100 price-product px-2">
-                  <span>Giá: {{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(datas.price)}}</span>
+                  <span class="font-weight-bold">{{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(datas.price)}}</span>
                 </div>
-                <div class="w-100 text-center py-1">
+                <!-- <div class="w-100 text-center py-1">
                   <button class="btn btn-buy-bg-custorm px-4 py-1">Mua</button>
-                </div>
+                </div> -->
               </div>
             </div>
           </div>
@@ -54,8 +54,8 @@ export default {
 .image img {
   height: 150px;
 }
-.__card {
-  border: 1px solid #fff;
-  background: #fff;
+.__card:hover {
+  box-shadow: 0px 0px 5px 5px rgba(163, 163, 163, 0.5);
+  background: rgba(255, 255, 255, 0.5);
 }
 </style>

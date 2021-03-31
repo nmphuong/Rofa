@@ -16,6 +16,12 @@ export const auth = {
     },
     async register ({ commit }, user) {
       return AuthService.register(user)
+    },
+    async getProfileCustomer ({ commit }) {
+      return AuthService.getProfileCustomer()
+    },
+    async getProfileSellers ({ commit }) {
+      return AuthService.getProfileSellers()
     }
   }
 }

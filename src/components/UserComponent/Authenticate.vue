@@ -33,7 +33,7 @@
               <div class="col-12 p-0 m-0 d-flex justify-content-center">
                 <div class="w-75 py-5">
                   <div class="control input">
-                    <router-view></router-view>
+                    <router-view :loginvs="loginvs"></router-view>
                   </div>
                 </div>
               </div>
@@ -48,6 +48,9 @@
 <script>
 import { authenLang } from '../../Lang/vi/authen'
 export default {
+  props: [
+    'loginvs'
+  ],
   data () {
     return {
       step_amount: 'login',

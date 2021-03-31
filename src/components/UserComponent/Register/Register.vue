@@ -14,13 +14,13 @@
           <div class="row p-0 m-0">
             <div class="col-lg px-0 first-name pb-2">
               <!-- First name -->
-              <input v-model="user.firstName" v-validate="'required'" class="form-control" name="first_name" type="text" :placeholder="registerLang.inputFirstNamePlaceholder">
+              <input v-on:keyup.enter="handleRegister" v-model="user.firstName" v-validate="'required'" class="form-control" name="first_name" type="text" :placeholder="registerLang.inputFirstNamePlaceholder">
               <span class='text-danger' v-if="errors.first('first_name')">{{registerLang.messageRequired}}</span>
               <!-- End first name -->
             </div>
             <div class="col-lg px-0 last-name pb-2">
               <!-- Last name -->
-              <input v-model="user.lastName" v-validate="'required'" class="form-control" name="last_name" type="text" :placeholder="registerLang.inputLastNamePlaceholder">
+              <input v-on:keyup.enter="handleRegister" v-model="user.lastName" v-validate="'required'" class="form-control" name="last_name" type="text" :placeholder="registerLang.inputLastNamePlaceholder">
               <span class='text-danger' v-if="errors.first('last_name')">{{registerLang.messageRequired}}</span>
               <!-- End last name -->
             </div>
@@ -28,19 +28,19 @@
         </div>
         <div class="pb-2">
           <!-- Email -->
-          <input v-model="user.email" v-validate="'required|email'" class="form-control" name="email" type="email" :placeholder="registerLang.inputEmailPlaceholder">
+          <input v-on:keyup.enter="handleRegister" v-model="user.email" v-validate="'required|email'" class="form-control" name="email" type="email" :placeholder="registerLang.inputEmailPlaceholder">
           <span class='text-danger' v-if="errors.first('email')">{{registerLang.messageValidateEmail}}</span>
           <!-- End email -->
         </div>
         <div class="pb-2">
           <!-- Username -->
-          <input v-model="user.username" v-validate="'required'" class="form-control" name="username" type="text" :placeholder="registerLang.inputUsernamePlaceholder">
+          <input v-on:keyup.enter="handleRegister" v-model="user.username" v-validate="'required'" class="form-control" name="username" type="text" :placeholder="registerLang.inputUsernamePlaceholder">
           <span class='text-danger' v-if="errors.first('username')">{{registerLang.messageRequired}}</span>
           <!-- End username -->
         </div>
         <div class="pb-2 position-relative">
           <!-- Password -->
-          <input v-model="user.passwords" v-validate="'required|min:6'" class="form-control input-password" name="password" :type="typePassword" :placeholder="registerLang.inputPasswordPlaceholder" ref="pwt">
+          <input v-on:keyup.enter="handleRegister" v-model="user.passwords" v-validate="'required|min:6'" class="form-control input-password" name="password" :type="typePassword" :placeholder="registerLang.inputPasswordPlaceholder" ref="pwt">
           <b-icon-eye v-if="typePassword === 'password'" @click="(typePassword === 'text') ? (typePassword = 'password') : (typePassword = 'text')" class="position-absolute eyes"></b-icon-eye>
           <b-icon-eye-slash v-else @click="(typePassword === 'text') ? (typePassword = 'password') : (typePassword = 'text')" class="position-absolute eyes"></b-icon-eye-slash>
           <span class='text-danger' v-if="errors.first('password')">{{registerLang.messageValidatePassword}}</span>
@@ -48,13 +48,13 @@
         </div>
         <div class="pb-2 position-relative">
           <!-- Repassword -->
-          <input v-model="user.repassword" v-validate="'required|min:6|confirmed:pwt|numeric'" name="repassword" class="form-control input-password" :type="typePassword" :placeholder="registerLang.inputRepasswordPlaceholder" :data-vv-as="user.passwords">
+          <input v-on:keyup.enter="handleRegister" v-model="user.repassword" v-validate="'required|min:6|confirmed:pwt|numeric'" name="repassword" class="form-control input-password" :type="typePassword" :placeholder="registerLang.inputRepasswordPlaceholder" :data-vv-as="user.passwords">
           <span class='text-danger' v-if="errors.first('repassword')">{{registerLang.messageValidateConfirmPassword}}</span>
           <!-- End repassword -->
         </div>
         <div class="pb-2 position-relative">
           <!-- Phone -->
-          <input v-model="user.phone" v-validate="'required|min:10|max:10'" class="form-control input-phone" name="phone" type="text" :placeholder="registerLang.inputPhonePlaceholder" @keypress="isNumber($event)">
+          <input v-on:keyup.enter="handleRegister" v-model="user.phone" v-validate="'required|min:10|max:10'" class="form-control input-phone" name="phone" type="text" :placeholder="registerLang.inputPhonePlaceholder" @keypress="isNumber($event)">
           <span class='text-danger' v-if="errors.first('phone')">{{registerLang.messageValidatePhone}}</span>
           <!-- End phone -->
         </div>

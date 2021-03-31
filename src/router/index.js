@@ -21,7 +21,6 @@ export default new Router({
   routes: [
     {
       path: '/user',
-      name: 'Authenticate',
       component: Authenticate,
       children: [
         {
@@ -38,7 +37,6 @@ export default new Router({
     },
     {
       path: '/',
-      name: 'MasterPage',
       component: MasterPage,
       children: [
         {

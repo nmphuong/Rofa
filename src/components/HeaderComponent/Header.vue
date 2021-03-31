@@ -28,7 +28,11 @@
               </b-navbar-nav>
               <b-nav-item class="px-0" href="http://rofa.vn">{{headerLang.getTheApp}}</b-nav-item>
               <b-nav-item class="px-0" href="#">{{headerLang.sell}}</b-nav-item>
-              <b-nav-item class="px-0" href="#">{{headerLang.contact}}</b-nav-item>
+              <b-nav-item class="px-0" href="#">
+                <b-link to="/contacts" class="nav-link">
+                  {{headerLang.contact}}
+                </b-link>
+              </b-nav-item>
           </b-collapse>
           <b-nav-item v-if="infoUser === null" class="px-0" @click="() => {this.$router.push('/user/login')}">{{headerLang.login}}</b-nav-item>
           <b-nav-item v-if="infoUser === null" class="px-0" @click="() => {this.$router.push('/user/register')}">{{headerLang.registration}}</b-nav-item>

@@ -16,8 +16,8 @@
                   <span>{{datas.name}}</span>
                 </div>
                 <div class="w-100 price-product px-2">
+                  <p class="m-0 p-đ font-weight-bold"><b-icon-geo-alt-fill></b-icon-geo-alt-fill>{{datas.location}}</p>
                   <span class="font-weight-bold">{{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(datas.price)}}</span>
-                  <span class="font-weight-bold">{{datas.location}}</span>
                 </div>
                 <!-- <div class="w-100 text-center py-1">
                   <button class="btn btn-buy-bg-custorm px-4 py-1">Mua</button>

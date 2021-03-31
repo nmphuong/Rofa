@@ -37,13 +37,13 @@
             <!-- Grid column -->
             <!-- Grid column -->
             <div class="col-md-6 mb-4">
-                <div class="card bg-secondary form-white h-100">
+                <div class="card card-text-center form-white h-100">
                     <div class="card-body">
                         <!-- Form contact -->
                         <div class="text-center">
                             <iframe
                                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.200608508366!2d106.71825321533424!3d10.795942061784023!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317528a907675c8b%3A0x6c9e69027f620424!2sLandmark%205!5e0!3m2!1svi!2s!4v1616658155385!5m2!1svi!2s"
-                                width="600" height="60" style="border:0;" allowfullscreen=""
+                                width="100%" height="300px" style="border:0;" allowfullscreen=""
                                 loading="lazy">
                             </iframe>
                         </div>
@@ -81,8 +81,8 @@ export default {
   background-image: linear-gradient(
     30deg,
     rgb(236, 236, 236) 30%,
-    rgba(144, 194, 144, 0.5) 20%,
-    rgba(204, 241, 204, 0.5)
+    rgba(128, 230, 128, 0.5) 20%,
+    rgba(135, 233, 135, 0.5)
   );
   margin-bottom: 10px;
   border-bottom: 1px solid #eeeded;
@@ -103,5 +103,11 @@ export default {
   border-left: 0;
   border-right: 0;
   border-radius: 0;
+}
+.card-text-center{
+  background-image: linear-gradient(30deg,
+    rgb(236, 236, 236) 50%,
+    rgba(89, 94, 89, 0.5) 20%,
+    rgba(94, 97, 94, 0.5));
 }
 </style>

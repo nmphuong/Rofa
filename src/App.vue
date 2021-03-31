@@ -66,6 +66,7 @@ export default {
         } else {
           this.loginvs = vs
           this.$router.push('/user/login')
+          loading.hide()
         }
       } else if (vs === 'seller') {
         seller = JSON.parse(localStorage.getItem('Oaj0mZteIDsw3vgVxYCbsellers'))
@@ -93,6 +94,7 @@ export default {
         } else {
           this.loginvs = vs
           this.$router.push('/user/login')
+          loading.hide()
         }
       }
     },

@@ -54,6 +54,11 @@ export default new Router({
           name: 'Contact',
           component: Contact
         }
+        // {
+        //   path: '/',
+        //   name: 'HomePage',
+        //   component: HomePage
+        // }
       ]
     }
   ]

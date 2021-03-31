@@ -10,6 +10,7 @@
       >
         <b-carousel-slide v-for="(banner, index) in banners" :key="index" :img-src="banner.img_banner" :class="'slide__' + index + ' slide__item'"></b-carousel-slide>
       </b-carousel>
+      <SearchBox />
       <ItemCard v-for="(item, index) in itemsProductHome" :key="index" :products="item" />
     </div>
   </div>
@@ -17,6 +18,7 @@
 
 <script>
 import ItemCard from './Components/ItemCardComponent'
+import SearchBox from '../SearchComponent/SearchComponent'
 export default {
   name: 'HomeComponent',
   props: [
@@ -35,6 +37,7 @@ export default {
     //
   },
   components: {
+    SearchBox,
     ItemCard
   }
 }

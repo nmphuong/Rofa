@@ -8,10 +8,8 @@
                         <img src="http://d1f7geppf3ca7.cloudfront.net/origin/194139/1415869545643_188012.jpg">
                     </div>
                     <div class="we_are_detail-text">
-                        <h4>Chúng tôi là</h4>
-                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nihil officia debitis in molestiae
-                            minima id delectus amet nam ducimus qui, ab expedita. Hic voluptatum ipsum temporibus
-                            possimus laboriosam. Alias, ut.</p>
+                        <h4>{{InfoLang.wearewho}}</h4>
+                        <span class="p">{{InfoLang.textP}}</span>
                     </div>
                 </div>
             </div>
@@ -21,9 +19,8 @@
                         <img src="https://thucphamdongxanh.com/wp-content/uploads/2019/12/chon-rau-cu-qua-sach-tam-quan-trong.jpeg" alt="">
                     </div>
                     <div class="we_are_detail-text">
-                        <h4>Sản phẩm của chúng tôi</h4>
-                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nihil officia debitis in molestiae
-                            .</p>
+                         <h4>{{InfoLang.OurProducts}}</h4>
+                        <span class="p">{{InfoLang.textP}}</span>
                     </div>
                 </div>
             </div>
@@ -33,10 +30,8 @@
                         <img src="https://thuycanhsaigon.net/wp-content/uploads/2018/11/farm-thuy-canh-1024x768.jpg" alt="">
                     </div>
                     <div class="we_are_detail-text">
-                        <h4>Công việc của chúng tôi</h4>
-                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nihil officia debitis in molestiae
-                            minima id delectus amet nam ducimus qui, ab expedita. Hic voluptatum ipsum temporibus
-                            possimus laboriosam. Alias, ut.</p>
+                         <h4>{{InfoLang.Ourjob}}</h4>
+                        <span class="p">{{InfoLang.textP}}</span>
                     </div>
                 </div>
             </div>
@@ -46,11 +41,12 @@
 </template>
 
 <script>
+import { InfoLang } from '../../Lang/vi/Info'
 export default {
   name: 'Infotop',
   data () {
     return {
-      //
+      InfoLang: InfoLang
     }
   }
 }
@@ -79,7 +75,7 @@ body {
 }
 .we_are_detail-img > img {
   width: 100%;
-  max-height: 250px;
+  max-height: 200px;
 }
 .we_are_detail-text {
   text-align: center;

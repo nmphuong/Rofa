@@ -3,77 +3,72 @@
       <div class="container" style="text-align:center">
         <h2 class="product-text">Sản Phẩm</h2>
         <div class=" product row ">
-            <div class="product_left col-12 col-sm-4 m-0">
+            <div class="product_left col-md-12 col-lg-4 m-0">
                 <div class="product_left-item colmn">
                     <div class="product_left-detail row mb-2">
-                        <div class="product_left_detail-img col-5">
+                        <div class="product_left_detail-img col-4">
                             <img :src="require('@/assets/ico/dacsan.png')" alt="">
                         </div>
-                        <div class="product_left_detail-text col-7">
-                          <h4>Đặc Sản</h4>
-                          Lorem ipsum dolor sit amet consectetur
-                            adipisicingelit. Hic, delectus?</div>
+                        <div class="product_left_detail-text col-8">
+                          <h5>{{InfoLang.DacsanVungMien}}</h5>
+                          <span class="p">{{InfoLang.textP}}</span>
+                          </div>
                     </div>
                     <div class="product_left-detail row mb-2">
                         <div class="product_left_detail-img col-5">
                             <img :src="require('@/assets/ico/rausach.png')" alt="">
                         </div>
                         <div class="product_left_detail-text col-7">
-                           <h4>Rau Sạch</h4>
-                          Lorem ipsum dolor sit amet consectetur
-                            adipisi
-                            elit. Hic, delectus?</div>
+                           <h5>{{InfoLang.Rausach}}</h5>
+                          <span class="p">{{InfoLang.textP}}</span>
+                          </div>
                     </div>
                     <div class="product_left-detail row mb-2">
-                        <div class="product_left_detail-img col-5">
+                        <div class="product_left_detail-img col-4">
                             <img :src="require('@/assets/ico/nongsan.png')" alt="">
                         </div>
-                        <div class="product_left_detail-text col-7">
-                           <h4>Nông Sản</h4>
-                          Lorem ipsum dolor sit amet consectetur
-                          adipisicing
-                          elit. Hic, delectus?</div>
+                        <div class="product_left_detail-text col-8">
+                           <h5>{{InfoLang.Nongsan}}</h5>
+                          <span class="p">{{InfoLang.textP}}</span>
+                          </div>
                     </div>
                 </div>
             </div>
-            <div class="product_center col-md-4">
+            <div class="product_center col-md-12 col-lg-4">
                 <div class="product_center_bg">
                     <div class="product_center_img">
                       <img :src="require('@/assets/ico/512.png')" alt="">
                     </div>
                 </div>
             </div>
-            <div class="product_right col-12 col-sm-4 ">
+            <div class="product_right col-md-12 col-lg-4 ">
                 <div class="product_right-item colmn">
-                    <div class="product_left-detail row mb-2">
+                    <div class="product_left-detail row mb-2 p-3">
                         <div class="product_left_detail-img col-5">
                               <img :src="require('@/assets/ico/thuyhaisan.png')" alt="">
                         </div>
                         <div class="product_left_detail-text col-7">
-                          <h4>Thủy-Hải sản</h4>
-                          Lorem ipsum dolor sit amet consectetur
-                            adipisicing
-                            elit. Hic, delectus?</div>
+                         <h5>{{InfoLang.ThuyHaiSan}}</h5>
+                         <span class="p">{{InfoLang.textP}}</span>
+                         </div>
                     </div>
-                    <div class="product_left-detail row mb-2">
+                    <div class="product_left-detail row mb-2 p-3 ">
                         <div class="product_left_detail-img col-5">
                             <img :src="require('@/assets/ico/thưcan.png')" alt="">
                         </div>
                         <div class="product_left_detail-text col-7">
-                          <h4>Vật Tư Thức Ăn</h4>
-                          Lorem ipsum dolor sit amet consectetur
-                            adipisicing
-                            elit. Hic, delectus?</div>
+                          <h5>{{InfoLang.Vattuthucan}}</h5>
+                          <span class="p">{{InfoLang.textP}}</span>
+                         </div>
                     </div>
-                    <div class="product_left-detail row mb-2">
+                    <div class="product_left-detail row mb-2 p-3">
                         <div class="product_left_detail-img col-5">
                             <img :src="require('@/assets/ico/tintuc.png')" alt="">
                         </div>
                         <div class="product_left_detail-text col-7">
-                          <h4>Tin Tức</h4>
-                          Lorem ipsum dolor sit amet consectetur
-                            adipisicing
-                            elit. Hic, delectus?</div>
+                          <h5>{{InfoLang.New}}</h5>
+                          <span class="p">{{InfoLang.textP}}</span>
+                          </div>
                     </div>
                 </div>
             </div>
@@ -82,11 +77,12 @@
   </div>
 </template>
 <script>
+import { InfoLang } from '../../Lang/vi/Info'
 export default {
   name: 'InfoCenter',
   data () {
     return {
-      //
+      InfoLang: InfoLang
     }
   }
 }
@@ -109,6 +105,7 @@ body {
 }
 .product{
   color: rgb(35, 107, 7);
+  align-items: center;
 }
 .product-text{
   color: rgb(35, 107, 7);
@@ -122,20 +119,6 @@ body {
   justify-content: center;
   align-items: center;
   padding-top: 10px;
-}
-.product_center_bg {
-  background-image: url("https://sites.google.com/site/dailytraicaybinhvui/_/rsrc/1406108725813/home/1511028_252336741598733_1107758098_n.jpg");
-  width: 400px;
-  height: 400px;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  -moz-border-radius: 100%;
-  -webkit-border-radius: 100%;
-  border-radius: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 .product_center_img{
   background-color: #fff;
@@ -161,10 +144,10 @@ body {
 }
 .product_left-detail {
   width: 100%;
-  height: 100%;
+  height: 200px;
   border: 1px dashed gray;
   border-radius: 10px;
-  padding: 0 10px;
+  padding: 15px 0;
 }
 .product_left_detail-img {
   width: 100%;
@@ -182,5 +165,10 @@ body {
 }
 .product_left_detail-img {
   width: 100%;
+}
+@media only screen and (max-width: 992px) {
+.product_center{
+display: none;
+  }
 }
 </style>

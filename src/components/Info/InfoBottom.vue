@@ -38,10 +38,11 @@
   </div>
 </template>
 <script>
+import { InfoLang } from '../../Lang/vi/Info'
 export default {
   data () {
     return {
-      //
+      InfoLang: InfoLang
     }
   }
 }

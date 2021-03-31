@@ -24,7 +24,7 @@
                             </div>
                             <div class="md-form mb-3">
                                 <i class="fa fa-pencil prefix grey-text"></i>
-                                <VueEditor v-model="content" placeholder="Nội dung liên hệ tới @gmail.com"></VueEditor>
+                                <!-- <VueEditor v-model="content" placeholder="Nội dung liên hệ tới @gmail.com"></VueEditor> -->
                             </div>
                             <div class="text-center">
                                 <button class="btn btn-outline-danger btn-lg">Gửi</button>
@@ -59,7 +59,7 @@
 </template>
 
 <script>
-import { VueEditor } from 'vue2-editor'
+// import { VueEditor } from 'vue2-editor'
 export default {
   name: 'Contact',
   data () {
@@ -68,7 +68,7 @@ export default {
     }
   },
   components: {
-    VueEditor
+    // VueEditor
   }
 }
 </script>

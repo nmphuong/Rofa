@@ -148,6 +148,7 @@ body {
   border: 1px dashed gray;
   border-radius: 10px;
   padding: 15px 0;
+  margin: 0;
 }
 .product_left_detail-img {
   width: 100%;

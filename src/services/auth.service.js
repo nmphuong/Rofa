@@ -38,7 +38,6 @@ class AuthService {
     if (data instanceof Error) {
       return data
     } else {
-      console.log(data)
       var Oaj0mZteIDsw3vgVxYCbsellers = '{"token":"' + data.data.data.token + '", "loging":' + true + '}'
       var customer = JSON.parse(localStorage.getItem('Oaj0mZteIDsw3vgVxYCbcustomers'))
       if (customer !== null) {

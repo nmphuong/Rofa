@@ -5,7 +5,32 @@
     />
     <div class="w-100">
       <div class="container-fluid p-0 m-0">
-        <router-view :banners="bannerHome" :itemsProductHome="itemsHome"></router-view>
+        <router-view
+          :dataHome="dataHome"
+          :dataBannerHome="dataBannerHome"
+          :dataSpecialties="dataSpecialties"
+          :bannerSpecialties="bannerSpecialties"
+          :dataFreshVegetable="dataFreshVegetable"
+          :bannerFreshVegetable="bannerFreshVegetable"
+          :dataAgricultural="dataAgricultural"
+          :bannerAgricultural="bannerAgricultural"
+          :dataSeaFood="dataSeaFood"
+          :bannerSeaFood="bannerSeaFood"
+          :dataFoodSupplies="dataFoodSupplies"
+          :bannerFoodSupplies="bannerFoodSupplies"
+          @HomeData="dataHomeFunc"
+          @HomeBanner="bannerHomeFunc"
+          @SpecialtiesData="dataSpecialtiesFunc"
+          @SpecialtiesBanner="bannerSpecialtiesFunc"
+          @FreshVegetableData="dataFreshVegetableFunc"
+          @FreshVegetableBanner="bannerFreshVegetableFunc"
+          @AgriculturalData="dataAgriculturalFunc"
+          @AgriculturalBanner="bannerAgriculturalFunc"
+          @SeaFoodData="dataSeaFoodFunc"
+          @SeaFoodBanner="bannerSeaFoodFunc"
+          @FoodSuppliesData="dataFoodSuppliesFunc"
+          @FoodSuppliesBanner="bannerFoodSuppliesFunc"
+        ></router-view>
       </div>
     </div>
   </div>
@@ -17,34 +42,21 @@ export default {
   data () {
     return {
       loading: false,
-      offset: 0,
-      limit: 12,
-      query: {},
-      // Banner
-      bannerHome: [],
-      bannerHomeKey: null,
-      // End Banner
-      // Home
-      category: 4,
-      itemsHome: []
-      // End Home
+      dataHome: null,
+      dataBannerHome: null,
+      dataSpecialties: null,
+      bannerSpecialties: null,
+      dataFreshVegetable: null,
+      bannerFreshVegetable: null,
+      dataAgricultural: null,
+      bannerAgricultural: null,
+      dataSeaFood: null,
+      bannerSeaFood: null,
+      dataFoodSupplies: null,
+      bannerFoodSupplies: null
     }
   },
   async mounted () {
-    if (this.$route.name === 'HomePage') {
-      if (this.bannerHome.length === 0) {
-        await this.showLoading()
-        // Action
-        await this.handleGetBanner()
-        await this.handleGetSpecialties()
-        await this.handleGetFreshVegetable()
-        await this.handleGetAgricultural()
-        await this.handleGetSeaFood()
-        await this.handleGetFoodSupplies()
-        // End Action
-        await this.hideLoading()
-      }
-    }
   },
   methods: {
     showLoading () {
@@ -63,105 +75,44 @@ export default {
     hideLoading () {
       this.loading.hide()
     },
-    // Banner
-    async handleGetBanner () {
-      await this.$store.dispatch('home/getBanners', this.bannerHomeKey).then((result) => {
-        this.bannerHome = result.data.data
-      }).catch((e) => {
-      })
+    async dataHomeFunc (value) {
+      this.dataHome = value
     },
-    // End Banner
-    // Home
-    async handleGetSpecialties () {
-      this.query.offset = 0
-      this.query.limit = 12
-      this.bannerHomeKey = 4
-      await this.$store.dispatch('home/specialties', this.query).then(async (result) => {
-        await this.$store.dispatch('home/getBanners', this.bannerHomeKey).then(async (banner) => {
-          await this.itemsHome.push({
-            title: 'Đặc sản vùng miền',
-            banner: banner.data.data,
-            link: '/products/specialties',
-            data: result.data.data
-          })
-        }).catch((e) => {
-        })
-      }).catch((e) => {
-      })
+    async bannerHomeFunc (value) {
+      this.dataBannerHome = value
     },
-    async handleGetFreshVegetable () {
-      this.query.category_id = 4
-      this.query.offset = 0
-      this.query.limit = 12
-      this.bannerHomeKey = 4
-      await this.$store.dispatch('home/getProductHome', this.query).then(async (result) => {
-        await this.$store.dispatch('home/getBanners', this.bannerHomeKey).then(async (banner) => {
-          await this.itemsHome.push({
-            title: 'Rau Sạch',
-            banner: banner.data.data,
-            link: '/products/fresh-vegetable',
-            data: result.data.data
-          })
-        }).catch((e) => {
-        })
-      }).catch((e) => {
-      })
+    async dataSpecialtiesFunc (value) {
+      this.dataSpecialties = value
     },
-    async handleGetAgricultural () {
-      this.query.category_id = 7
-      this.query.offset = 0
-      this.query.limit = 12
-      this.bannerHomeKey = 7
-      await this.$store.dispatch('home/getProductHome', this.query).then(async (result) => {
-        await this.$store.dispatch('home/getBanners', this.bannerHomeKey).then(async (banner) => {
-          await this.itemsHome.push({
-            title: 'Nông Sản',
-            banner: banner.data.data,
-            link: '/products/agricultural',
-            data: result.data.data
-          })
-        }).catch((e) => {
-        })
-      }).catch((e) => {
-      })
+    async bannerSpecialtiesFunc (value) {
+      this.bannerSpecialties = value
     },
-    async handleGetSeaFood () {
-      this.query.category_id = 1
-      this.query.offset = 0
-      this.query.limit = 12
-      this.bannerHomeKey = 1
-      await this.$store.dispatch('home/getProductHome', this.query).then(async (result) => {
-        await this.$store.dispatch('home/getBanners', this.bannerHomeKey).then(async (banner) => {
-          await this.itemsHome.push({
-            title: 'Thủy - Hải Sản',
-            banner: banner.data.data,
-            link: '/products/sea-food',
-            data: result.data.data
-          })
-        }).catch((e) => {
-        })
-      }).catch((e) => {
-      })
+    async dataFreshVegetableFunc (value) {
+      this.dataFreshVegetable = value
     },
-    async handleGetFoodSupplies () {
-      this.query.category_id = 5
-      this.query.offset = 0
-      this.query.limit = 12
-      this.bannerHomeKey = 5
-      await this.$store.dispatch('home/getProductHome', this.query).then(async (result) => {
-        await this.$store.dispatch('home/getBanners', this.bannerHomeKey).then(async (banner) => {
-          await this.itemsHome.push({
-            title: 'Vật Tư Thức Ăn',
-            banner: banner.data.data,
-            link: '/products/food-supplies',
-            data: result.data.data
-          })
-        }).catch((e) => {
-        })
-      }).catch((e) => {
-      })
+    async bannerFreshVegetableFunc (value) {
+      this.bannerFreshVegetable = value
+    },
+    async dataAgriculturalFunc (value) {
+      this.dataAgricultural = value
+    },
+    async bannerAgriculturalFunc (value) {
+      this.bannerAgricultural = value
+    },
+    async dataSeaFoodFunc (value) {
+      this.dataSeaFood = value
+    },
+    async bannerSeaFoodFunc (value) {
+      this.bannerSeaFood = value
+    },
+    async dataFoodSuppliesFunc (value) {
+      this.dataFoodSupplies = value
+    },
+    async bannerFoodSuppliesFunc (value) {
+      this.bannerFoodSupplies = value
     }
-    // End Home
+  },
+  watch: {
   }
 }
 </script>

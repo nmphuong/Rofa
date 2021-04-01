@@ -18,9 +18,18 @@ class HomeService {
   }
   async specialties (query) {
     var args = Object.assign({}, query)
+    var offset = 0
+    var limit = 0
+    if (args.hasOwnProperty('offset') && args.hasOwnProperty('limit')) {
+      offset = args.offset
+      limit = args.limit
+    } else if (args.hasOwnProperty('offsetSpecialties') && args.hasOwnProperty('limitSpecialties')) {
+      offset = args.offsetSpecialties
+      limit = args.limitSpecialties
+    }
     var data = await getQuerySchema({
       token: false,
-      path: 'customer/specialties?offset' + args.offset + '&limit=' + args.limit
+      path: 'customer/specialties?offset=' + offset + '&limit=' + limit
     })
     if (data instanceof Error) {
       return data

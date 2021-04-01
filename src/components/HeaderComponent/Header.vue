@@ -15,18 +15,34 @@
               </b-nav-item>
               <b-navbar-nav class="px-1">
                 <b-nav-item-dropdown text="Sản phẩm" right>
-                  <b-dropdown-item>
-                    <b-link class="nav-link" to="/products/specialties">
-                      {{headerLang.regionalSpecialties}}
-                    </b-link>
-                  </b-dropdown-item>
-                  <b-dropdown-item>{{headerLang.freshVegetable}}</b-dropdown-item>
-                  <b-dropdown-item>{{headerLang.agricultural}}</b-dropdown-item>
-                  <b-dropdown-item>{{headerLang.seaFood}}</b-dropdown-item>
-                  <b-dropdown-item>{{headerLang.foodSupplies}}</b-dropdown-item>
+                  <b-link class="nav-link p-0" to="/products/specialties">
+                    <b-dropdown-item class="p-0" to="/products/specialties">
+                        {{headerLang.regionalSpecialties}}
+                    </b-dropdown-item>
+                  </b-link>
+                  <b-link class="nav-link p-0" to="/products/fresh-vegetable">
+                    <b-dropdown-item class="p-0" to="/products/fresh-vegetable">
+                        {{headerLang.freshVegetable}}
+                    </b-dropdown-item>
+                  </b-link>
+                  <b-link class="nav-link p-0" to="/products/agricultural">
+                    <b-dropdown-item class="p-0" to="/products/agricultural">
+                        {{headerLang.agricultural}}
+                    </b-dropdown-item>
+                  </b-link>
+                  <b-link class="nav-link p-0" to="/products/sea-food">
+                    <b-dropdown-item class="p-0" to="/products/sea-food">
+                        {{headerLang.seaFood}}
+                    </b-dropdown-item>
+                  </b-link>
+                  <b-link class="nav-link p-0" to="/products/food-supplies">
+                    <b-dropdown-item class="p-0" to="/products/food-supplies">
+                        {{headerLang.foodSupplies}}
+                    </b-dropdown-item>
+                  </b-link>
                 </b-nav-item-dropdown>
               </b-navbar-nav>
-              <b-nav-item class="px-0" href="http://rofa.vn">{{headerLang.getTheApp}}</b-nav-item>
+              <b-nav-item class="px-0" @click="getApp">{{headerLang.getTheApp}}</b-nav-item>
               <b-nav-item class="px-0" href="#">{{headerLang.sell}}</b-nav-item>
               <b-nav-item class="px-0" href="#">
                 <b-link to="/contacts" class="nav-link">
@@ -65,6 +81,9 @@ export default {
   methods: {
     async logout () {
       this.$parent.logout()
+    },
+    async getApp () {
+      window.open('http://rofa.vn', '_blank')
     }
   }
 }

@@ -12,6 +12,13 @@ import Info from '@/components/Info/Info'
 
 import Contact from '@/components/ContactComponent/ContactComponent'
 
+import Product from '@/components/ProductsComponent/ProductsComponent'
+import Specialties from '@/components/ProductsComponent/Components/Specialties/Specialties'
+import FreshVegetable from '@/components/ProductsComponent/Components/FreshVegetable/FreshVegetable'
+import Agricultural from '@/components/ProductsComponent/Components/Agricultural/Agricultural'
+import SeaFood from '@/components/ProductsComponent/Components/SeaFood/SeaFood'
+import FoodSupplies from '@/components/ProductsComponent/Components/FoodSupplies/FoodSupplies'
+
 Vue.use(Router)
 
 export default new Router({
@@ -45,20 +52,41 @@ export default new Router({
           component: HomePage
         },
         {
-          path: '/gioi-thieu',
+          path: 'gioi-thieu',
           name: 'Info',
           component: Info
         },
         {
-          path: '/contacts',
+          path: 'contacts',
           name: 'Contact',
           component: Contact
+        },
+        {
+          path: 'products',
+          component: Product,
+          children: [
+            {
+              path: 'specialties',
+              component: Specialties
+            },
+            {
+              path: 'fresh-vegetable',
+              component: FreshVegetable
+            },
+            {
+              path: 'agricultural',
+              component: Agricultural
+            },
+            {
+              path: 'sea-food',
+              component: SeaFood
+            },
+            {
+              path: 'food-supplies',
+              component: FoodSupplies
+            }
+          ]
         }
-        // {
-        //   path: '/',
-        //   name: 'HomePage',
-        //   component: HomePage
-        // }
       ]
     }
   ]

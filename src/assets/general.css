@@ -15,6 +15,9 @@ body {
   padding-top: .8em!important;
   padding-bottom: .8em!important;
 }
+textarea:focus {
+  box-shadow: none;
+}
 /* End Header */
 /* Custom css */
 .form {

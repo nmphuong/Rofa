@@ -64,7 +64,7 @@ export default {
     async handleGetSpecialties () {
       this.query.offset = 0
       this.query.limit = 12
-      this.bannerHomeKey = 4
+      this.bannerHomeKey = 999
       await this.$store.dispatch('home/specialties', this.query).then(async (result) => {
         await this.$store.dispatch('home/getBanners', this.bannerHomeKey).then(async (banner) => {
           await this.itemsHome.push({

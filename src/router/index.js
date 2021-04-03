@@ -19,6 +19,8 @@ import Agricultural from '@/components/ProductsComponent/Components/Agricultural
 import SeaFood from '@/components/ProductsComponent/Components/SeaFood/SeaFood'
 import FoodSupplies from '@/components/ProductsComponent/Components/FoodSupplies/FoodSupplies'
 
+import DetailProduct from '@/components/DetailProducts/DetailProduct'
+
 Vue.use(Router)
 
 export default new Router({
@@ -86,6 +88,10 @@ export default new Router({
               component: FoodSupplies
             }
           ]
+        },
+        {
+          path: 'products/:id',
+          component: DetailProduct
         }
       ]
     }

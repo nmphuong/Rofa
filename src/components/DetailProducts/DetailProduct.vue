@@ -7,6 +7,18 @@
       <div class="col-md-6">
         <InfoProduct :dataListRate="dataListRate" :dataProduct="dataDetailProduct" />
       </div>
+      <div class="col-12 p-0 py-2 m-0">
+        <hr />
+      </div>
+      <div class="col-12">
+        <Description :longDescription="dataDetailProduct.long_desc" :shortDescription="dataDetailProduct.short_desc" />
+      </div>
+      <div class="col-12 p-0 py-2 m-0">
+        <hr />
+      </div>
+      <div class="col-12">
+        <Rate :dataRateAmount="dataRateAmount" />
+      </div>
     </div>
   </div>
 </template>
@@ -14,6 +26,8 @@
 <script>
 import Images from './components/Images'
 import InfoProduct from './components/InfoProduct'
+import Description from './components/Description'
+import Rate from './components/Rate'
 export default {
   name: 'DetailProduct',
   data () {
@@ -76,7 +90,9 @@ export default {
   },
   components: {
     Images,
-    InfoProduct
+    InfoProduct,
+    Description,
+    Rate
   }
 }
 </script>

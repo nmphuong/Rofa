@@ -4,5 +4,5 @@ const prodEnv = require("./prod.env");
 
 module.exports = merge(prodEnv, {
   NODE_ENV: '"development"',
-  ROOT_API: '"http://agrirofa.rofa.vn/public/api/"'
-});
+  ROOT_API: '"http://agri.rofa.vn/public/api/"'
+})

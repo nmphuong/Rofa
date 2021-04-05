@@ -24,6 +24,8 @@ import DashBoard from '@/components/SellerComponent/Components/DashboardComponen
 import AddProduct from '@/components/SellerComponent/Components/AddProduct/AddProduct'
 import ViewProduct from '@/components/SellerComponent/Components/ViewProduct/ViewProduct'
 
+import DetailProduct from '@/components/DetailProducts/DetailProduct'
+
 Vue.use(Router)
 
 export default new Router({
@@ -91,6 +93,10 @@ export default new Router({
               component: FoodSupplies
             }
           ]
+        },
+        {
+          path: 'products/:id',
+          component: DetailProduct
         }
       ]
     },

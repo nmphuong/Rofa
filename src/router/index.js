@@ -18,6 +18,11 @@ import FreshVegetable from '@/components/ProductsComponent/Components/FreshVeget
 import Agricultural from '@/components/ProductsComponent/Components/Agricultural/Agricultural'
 import SeaFood from '@/components/ProductsComponent/Components/SeaFood/SeaFood'
 import FoodSupplies from '@/components/ProductsComponent/Components/FoodSupplies/FoodSupplies'
+//
+import Seller from '@/components/SellerComponent/SellerComponent'
+import DashBoard from '@/components/SellerComponent/Components/DashboardComponent/DashboardComponent'
+import AddProduct from '@/components/SellerComponent/Components/AddProduct/AddProduct'
+import ViewProduct from '@/components/SellerComponent/Components/ViewProduct/ViewProduct'
 
 Vue.use(Router)
 
@@ -86,6 +91,24 @@ export default new Router({
               component: FoodSupplies
             }
           ]
+        }
+      ]
+    },
+    {
+      path: '/seller',
+      component: Seller,
+      children: [
+        {
+          path: 'dashboard',
+          component: DashBoard
+        },
+        {
+          path: 'add-product',
+          component: AddProduct
+        },
+        {
+          path: 'view-product',
+          component: ViewProduct
         }
       ]
     }

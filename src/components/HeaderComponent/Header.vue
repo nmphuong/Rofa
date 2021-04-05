@@ -43,7 +43,7 @@
                 </b-nav-item-dropdown>
               </b-navbar-nav>
               <b-nav-item class="px-0" @click="getApp">{{headerLang.getTheApp}}</b-nav-item>
-              <b-nav-item class="px-0" href="#">{{headerLang.sell}}</b-nav-item>
+              <b-nav-item class="px-0" href="/seller/dashboard">{{headerLang.sell}}</b-nav-item>
               <b-nav-item class="px-0" href="#">
                 <b-link to="/contacts" class="nav-link">
                   {{headerLang.contact}}

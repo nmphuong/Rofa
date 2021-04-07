@@ -52,7 +52,7 @@
           </b-collapse>
           <b-nav-item v-if="infoUser === null" class="px-0" @click="() => {this.$router.push('/user/login')}">{{headerLang.login}}</b-nav-item>
           <b-nav-item v-if="infoUser === null" class="px-0" @click="() => {this.$router.push('/user/register')}">{{headerLang.registration}}</b-nav-item>
-          <b-nav-item-dropdown class="img__avt" :style="{backgroundImage: 'url(' + infoUser.data.token_data.url_avata + ')'}" v-if="infoUser !== null" right>
+          <b-nav-item-dropdown class="img__avt m-auto" :style="{backgroundImage: 'url(' + infoUser.data.token_data.url_avata + ')'}" v-if="infoUser !== null" right>
             <b-dropdown-item @click="logout">{{headerLang.logout}}</b-dropdown-item>
             <b-dropdown-item @click="() => {this.$parent.loginWith('seller')}" v-if="isCustomer === true">{{headerLang.switchSeller}}</b-dropdown-item>
             <b-dropdown-item @click="() => {this.$parent.loginWith('customer')}" v-if="isSeller === true">{{headerLang.switchCutomer}}</b-dropdown-item>

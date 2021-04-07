@@ -11,6 +11,9 @@ export const home = {
     },
     async getProductHome ({ commit }, query) {
       return HomeService.getProductHome(query)
+    },
+    async getNews ({ commit }, query) {
+      return HomeService.getNews(query)
     }
   }
 }

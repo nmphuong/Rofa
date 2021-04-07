@@ -61,7 +61,7 @@
 </template>
 
 <script>
-window.addEventListener('load', () => {
+window.addEventListener('load', async () => {
   // Expand Left Side
   var icon = document.querySelector('.left__icon')
   var left = document.querySelector('.left')

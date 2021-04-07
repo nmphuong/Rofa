@@ -101,4 +101,15 @@ export default {
 </script>
 
 <style>
+.discount_code {
+  right: 0;
+  top: 0;
+  background: #e1fa00;
+}
+.text-dash {
+  text-decoration: line-through;
+}
+.discount_code {
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 84%, 0 100%);
+}
 </style>

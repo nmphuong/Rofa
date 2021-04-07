@@ -25,6 +25,8 @@ import AddProduct from '@/components/SellerComponent/Components/Product/AddProdu
 import ViewProduct from '@/components/SellerComponent/Components/Product/ViewProduct/ViewProduct'
 
 import DetailProduct from '@/components/DetailProducts/DetailProduct'
+import DetailProductSpecialties from '@/components/DetailProductsSpecialties/DetailProduct'
+import DetailNews from '@/components/DetailNews/DetailNews'
 
 Vue.use(Router)
 
@@ -97,6 +99,14 @@ export default new Router({
         {
           path: 'products/:id',
           component: DetailProduct
+        },
+        {
+          path: 'specialties/:id',
+          component: DetailProductSpecialties
+        },
+        {
+          path: 'news/:id',
+          component: DetailNews
         }
       ]
     },

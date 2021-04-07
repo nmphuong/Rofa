@@ -118,4 +118,7 @@ export default {
 </script>
 
 <style scoped>
+.text-dash {
+  text-decoration: line-through;
+}
 </style>

@@ -1,12 +1,16 @@
 <template>
   <div class="row p-0 m-0" v-if="dataFoodSupplies !== null">
-    <div v-for="(data, index) in dataFoodSupplies" :key="index" class="FoodSupplies-component col-lg-3 col-md-4 col-sm-4 col-6 p-0 m-0">
+    <b-link :to="'/products/' + data.slug" v-for="(data, index) in dataFoodSupplies" :key="index" class="FoodSupplies-component col-lg-3 col-md-4 col-sm-4 col-6 p-0 m-0 text-dark">
       <div class="w-100">
         <div class="row p-0 m-0">
           <div class="col-12 p-0 m-0">
             <div class="row p-0 m-0">
               <div class="col-12 p-1 m-0">
-                <div class="__card pb-5">
+                <div class="__card pb-5 position-relative">
+                  <div class="discount_code position-absolute p-1 pb-3 font-weight-bold text-center" v-if="data.discount_code !== null">
+                    <p class="mb-0 text-white">Giảm</p>
+                    <span class="text-danger">{{data.discount_code}}%</span>
+                  </div>
                   <div v-if="Array.isArray(data.images)" class="w-100 image">
                     <img class="w-100" :src="data.images[0]" alt="">
                   </div>
@@ -18,7 +22,8 @@
                   </div>
                   <div class="w-100 price-product px-2">
                     <p class="m-0 p-đ font-weight-bold"><b-icon-geo-alt-fill></b-icon-geo-alt-fill>{{data.location}}</p>
-                    <span class="font-weight-bold">{{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(data.price)}}</span>
+                    <span :class="((data.promotion_price !== null) ? 'text-dash' : 'font-weight-bold')">{{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(data.price)}}</span>&nbsp;&nbsp;
+                    <span v-if="data.promotion_price !== null" class="font-weight-bold text-danger">{{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(data.promotion_price)}}</span>
                   </div>
                 </div>
               </div>
@@ -26,7 +31,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </b-link>
     <div class="col-12 py-5 d-flex justify-content-center align-items-center">
       <button class="btn color-bg-main text-white" @click="() => this.actionFunction()">
         Xem thêm

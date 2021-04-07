@@ -50,5 +50,21 @@ class HomeService {
       return data
     }
   }
+  async getNews (query) {
+    var args = Object.assign({}, query)
+    var data = await postQuerySchema({
+      token: false,
+      data: {
+        offset: args.offset,
+        limit: args.limit
+      },
+      path: 'customer/get-all-news'
+    })
+    if (data instanceof Error) {
+      return data
+    } else {
+      return data.data
+    }
+  }
 }
 export default new HomeService()

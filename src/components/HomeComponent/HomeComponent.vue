@@ -51,6 +51,7 @@ export default {
       await this.handleGetAgricultural()
       await this.handleGetSeaFood()
       await this.handleGetFoodSupplies()
+      await this.handleGetNews()
       await this.$emit('HomeData', this.itemsHome)
       await this.$emit('HomeBanner', this.bannerHome)
       await this.$parent.hideLoading()
@@ -62,10 +63,11 @@ export default {
       })
     },
     async handleGetSpecialties () {
+      this.query.category_id = 9
       this.query.offset = 0
       this.query.limit = 12
       this.bannerHomeKey = 999
-      await this.$store.dispatch('home/specialties', this.query).then(async (result) => {
+      await this.$store.dispatch('home/getProductHome', this.query).then(async (result) => {
         await this.$store.dispatch('home/getBanners', this.bannerHomeKey).then(async (banner) => {
           await this.itemsHome.push({
             title: 'Đặc sản vùng miền',
@@ -146,6 +148,19 @@ export default {
             data: result.data.data
           })
         }).catch((e) => {
+        })
+      }).catch((e) => {
+      })
+    },
+    async handleGetNews () {
+      this.query.offset = 0
+      this.query.limit = 18
+      await this.$store.dispatch('home/getNews', this.query).then(async (result) => {
+        await this.itemsHome.push({
+          title: 'Tin Tức',
+          banner: null,
+          link: '/news/news',
+          data: result.data
         })
       }).catch((e) => {
       })

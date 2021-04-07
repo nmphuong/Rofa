@@ -4,7 +4,7 @@
       <div class="col-12 py-2">
         <span class="h5 font-weight-bold">{{ dataProduct.name }}</span>
       </div>
-      <div class="col-12 py-2">
+      <!-- <div class="col-12 py-2">
         <span v-if="this.resRate !== 0">
           <span class="text-danger text-decoration">{{ resRate.toFixed(1) }}</span>&nbsp;
           <b-icon-star-fill class="text-warning"></b-icon-star-fill>
@@ -18,18 +18,18 @@
         <span v-else>
           Chưa có đánh giá
         </span>
-      </div>
+      </div> -->
       <div class="col-12 py-2" style="background: #d3d3d3 !important">
-        <span v-if="dataProduct.promotion_price !== null" :class="((dataProduct.promotion_price !== null) ? 'text-dash' : 'font-weight-bold')">{{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(dataProduct.price)}}</span>&nbsp;&nbsp;
-        <span v-if="dataProduct.promotion_price !== null" class="text-danger h3">
-          {{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(dataProduct.promotion_price)}}
+        <span class="text-danger h3">
+          Giá: {{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(dataProduct.price)}}
         </span>
-        <span v-else class="text-danger h3">
-          {{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(dataProduct.price)}}
-        </span>
-        <span v-if="dataProduct.promotion_price !== null" class="discount bg-danger text-white px-2 py-1">{{ dataProduct.discount_code }}% giảm</span>
       </div>
       <div class="col-12 py-2">
+        <span>
+          Địa chỉ: {{dataProduct.location}}
+        </span>
+      </div>
+      <!-- <div class="col-12 py-2">
         <div class="row p-0 m-0 align-items-center">
           <span>Số lượng:&nbsp;&nbsp;&nbsp;</span>
           <div class="d-flex">
@@ -38,14 +38,14 @@
             <button :disabled="amountProduct >= Number(dataProduct.amount)" @click="() => {this.amountProduct = Number(this.amountProduct) + 1}" :class="((amountProduct >= Number(dataProduct.amount)) ? 'disabled ' : '') + 'btn btn-amount-down'">+</button>
           </div>
         </div>
-      </div>
-      <div class="col-12 py-2">
+      </div> -->
+      <!-- <div class="col-12 py-2">
         <div class="row p-0 m-0">
           <button class="btn color-bg-main text-white">Mua ngay</button>
           &nbsp;
           <button class="btn color-bg-main text-white">Thêm vào giỏ hàng</button>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
@@ -53,8 +53,7 @@
 <script>
 export default {
   props: [
-    'dataProduct',
-    'dataListRate'
+    'dataProduct'
   ],
   name: 'InfoProduct',
   data () {
@@ -65,26 +64,10 @@ export default {
     }
   },
   async mounted () {
-    await this.totalRate()
+    //
   },
   methods: {
-    totalRate () {
-      var five = (this.dataListRate[0] * 5)
-      var four = (this.dataListRate[1] * 4)
-      var three = (this.dataListRate[2] * 3)
-      var two = (this.dataListRate[3] * 2)
-      var one = (this.dataListRate[4] * 1)
-      this.person = this.dataListRate[0] + this.dataListRate[1] + this.dataListRate[2] + this.dataListRate[3] + this.dataListRate[4]
-      this.resRate = (this.person === 0) ? 0 : (five + four + three + two + one) / (this.person)
-    },
-    checkValidAmount () {
-      if (this.amountProduct < 1) {
-        this.amountProduct = 1
-      }
-      if (this.amountProduct > this.dataProduct.amount) {
-        this.amountProduct = this.dataProduct.amount
-      }
-    }
+    //
   }
 }
 </script>
@@ -97,8 +80,5 @@ export default {
 }
 .disabled {
   cursor: not-allowed;
-}
-.text-dash {
-  text-decoration: line-through;
 }
 </style>

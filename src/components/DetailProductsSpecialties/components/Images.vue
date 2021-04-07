@@ -2,9 +2,14 @@
   <div class="w-100">
     <div class="images w-100 main-image-product bg-image-detail" :style="{backgroundImage: 'url(' + imageProductShow + ')'}"></div>
     <div class="w-100 scroll-image image-child py-1">
-      <div class="d-flex p-0 m-0 image-child">
-        <div class="col-3 p-1 clk-chg" v-for="(image, index) in images" :key="index" @mouseover="() => {imageProductShow = image}" @click="() => {imageProductShow = image}">
+      <div class="d-flex p-0 m-0 image-child" v-if="Array.isArray(this.images)">
+        <div class="col-3 p-1 clk-chg" v-for="(image, index) in this.images" :key="index" @mouseover="() => {imageProductShow = image}" @click="() => {imageProductShow = image}">
           <div class="w-100 image-child" :style="{backgroundImage: 'url(' + image + ')'}"></div>
+        </div>
+      </div>
+      <div class="d-flex p-0 m-0 image-child" v-else>
+        <div class="col-3 p-1 clk-chg">
+          <div class="w-100 image-child" :style="{backgroundImage: 'url(' + this.images + ')'}"></div>
         </div>
       </div>
     </div>
@@ -19,7 +24,7 @@ export default {
   name: 'Images',
   data () {
     return {
-      imageProductShow: this.images[0]
+      imageProductShow: (Array.isArray(this.images) === true) ? this.images[0] : this.images
     }
   }
 }
@@ -46,6 +51,6 @@ export default {
   cursor: pointer;
 }
 .bg-image-detail {
-  background: rgb(228, 235, 220)
+  background: rgb(194, 194, 194);
 }
 </style>

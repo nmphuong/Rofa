@@ -13,7 +13,7 @@
     <div class="row p-0 m-0">
       <Content v-for="(data, index) in products.data" :key="index" :datas="data" />
     </div>
-    <div class="row p-0 m-0 justify-content-center py-3">
+    <div class="row p-0 m-0 justify-content-center py-3" v-if="products.link !== '/news/news'">
       <b-link v-bind:class="['nav-link','text-white','color-bg-main','link-nav-icon', 'readmore']" :to="products.link">
         Xem Thêm
       </b-link>

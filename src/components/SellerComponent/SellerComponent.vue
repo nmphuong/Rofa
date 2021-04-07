@@ -824,7 +824,7 @@ body {
 .right__desc {
   margin-bottom: 20px;
   text-transform: uppercase;
-  font-size: 14px;
+  font-size: 17px;
 }
 
 .right__cards {
@@ -832,6 +832,8 @@ body {
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 20px;
   margin-bottom: 20px;
+  align-items: center;
+  text-align: center;
 }
 
 @media screen and (max-width: 1023px) {
@@ -856,7 +858,7 @@ body {
   background-color: #0E1731;
   border-radius: 10px;
   color: white;
-  padding: 15px 20px;
+  padding: 5px 0px;
   box-shadow: 0px 14px 20px -5px rgba(4, 26, 90, 0.340773);
   transition: all 0.3s ease;
 }
@@ -882,31 +884,46 @@ body {
 }
 
 .right__cardTitle {
-  font-size: 16px;
+  font-size: 30px;
   margin-bottom: 5px;
+  color: #dadce9;
+  text-align: center;
 }
-
+.right__cardTitle:hover {
+color:rgb(10, 167, 10);
+}
 .right__cardNumber {
   font-size: 28px;
   margin-bottom: 15px;
+  text-align: center;
+}
+.right__cardNumber:hover{
+color:rgb(10, 167, 10);
 }
 
 .right__cardDesc {
   text-transform: uppercase;
-  font-size: 12px;
+  font-size: 18px;
   display: flex;
   align-items: center;
   opacity: 0.7;
   transform: translateY(5px);
+  justify-content: center;
+  background-color: #909297;
+
+}
+.right__cardDesc:hover{
+  color:rgb(10, 167, 10);
 }
 
-.right__cardDesc img {
-  width: 28px;
-  margin-left: 5px;
+.right__cardDesc .icon {
+  color: #f4fcfc;
+  width: 30px;
+  height: 20px;
 }
 
 .right__tableTitle {
-  margin-bottom: 20px;
+ margin-bottom: 20px;
 }
 
 @media screen and (max-width: 380px) {

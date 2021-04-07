@@ -16,17 +16,17 @@
       <ul class='left__menu'>
         <li class='left__menuItem'>
           <a href='index.html' class='left__title'
-            ><img src='assets/icon-dashboard.svg' alt='' />Thống Kê</a
+            > <b-icon-pie-chart-fill></b-icon-pie-chart-fill>&emsp;Thống Kê  </a
           >
         </li>
          <li class='left__menuItem'>
-          <a href='view_orders.html' class='left__title'
-            ><img src='assets/icon-book.svg' alt='' />Doanh Thu</a
+          <a href='' class='left__title'
+            ><b-icon-pie-chart-fill></b-icon-pie-chart-fill>&emsp;Doanh Thu</a
           >
         </li>
         <li class='left__menuItem'>
           <div class='left__title'>
-            <img src='assets/icon-tag.svg' alt='' />Sản Phẩm
+            <b-icon-pie-chart-fill></b-icon-pie-chart-fill>&emsp;Sản Phẩm
             <span class="left__iconDown"><b-icon-chevron-down></b-icon-chevron-down></span>
           </div>
           <div class='left__text'>
@@ -36,7 +36,7 @@
         </li>
         <li class='left__menuItem'>
           <div class='left__title'>
-            <img src='assets/icon-edit.svg' alt='' />Đơn hàng
+            <b-icon-pie-chart-fill></b-icon-pie-chart-fill>&emsp;Đơn hàng
             <span class="left__iconDown"><b-icon-chevron-down></b-icon-chevron-down></span>
           </div>
           <div class='left__text'>
@@ -47,12 +47,12 @@
         </li>
         <li class='left__menuItem'>
           <a href='view_orders.html' class='left__title'
-            ><img src='assets/icon-book.svg' alt='' />Tài Khoản</a
+            ><b-icon-pie-chart-fill></b-icon-pie-chart-fill>&emsp;Tài Khoản</a
           >
         </li>
         <li class='left__menuItem'>
           <a href='' class='left__title'
-            ><img src='assets/icon-logout.svg' alt='' />Đăng Xuất</a
+            ><b-icon-pie-chart-fill></b-icon-pie-chart-fill>&emsp;Đăng Xuất</a
           >
         </li>
       </ul>

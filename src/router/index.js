@@ -21,8 +21,8 @@ import FoodSupplies from '@/components/ProductsComponent/Components/FoodSupplies
 //
 import Seller from '@/components/SellerComponent/SellerComponent'
 import DashBoard from '@/components/SellerComponent/Components/DashboardComponent/DashboardComponent'
-import AddProduct from '@/components/SellerComponent/Components/AddProduct/AddProduct'
-import ViewProduct from '@/components/SellerComponent/Components/ViewProduct/ViewProduct'
+import AddProduct from '@/components/SellerComponent/Components/Product/AddProduct/AddProduct'
+import ViewProduct from '@/components/SellerComponent/Components/Product/ViewProduct/ViewProduct'
 
 import DetailProduct from '@/components/DetailProducts/DetailProduct'
 

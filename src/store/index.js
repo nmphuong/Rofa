@@ -4,6 +4,7 @@ import { auth } from './auth.module'
 import { home } from './home.module'
 import { products } from './products.module'
 import { search } from './search.module'
+import { cart } from './cart.module'
 
 Vue.use(Vuex)
 
@@ -12,6 +13,7 @@ export default new Vuex.Store({
     auth,
     home,
     products,
-    search
+    search,
+    cart
   }
 })

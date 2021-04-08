@@ -1,6 +1,9 @@
 <template>
   <div class="dtp-cpn py-3 container">
     <div class="row p-0 m-0" v-if="dataDetailProduct !== null && dataListRate !== null && dataRateAmount !== null && dataSameProduct !== null">
+      <vue-headful
+        :title="'RoFa - ' + dataDetailProduct.name"
+      />
       <div class="col-md-6">
         <Images :images="dataDetailProduct.images"/>
       </div>

@@ -29,6 +29,7 @@ import DetailProductSpecialties from '@/components/DetailProductsSpecialties/Det
 import DetailNews from '@/components/DetailNews/DetailNews'
 
 import ResultSearch from '@/components/SearchComponent/ResultComponent'
+import Cart from '@/components/CartComponent/Cart'
 
 Vue.use(Router)
 
@@ -113,6 +114,10 @@ export default new Router({
         {
           path: 'search/result',
           component: ResultSearch
+        },
+        {
+          path: 'cart',
+          component: Cart
         }
       ]
     },

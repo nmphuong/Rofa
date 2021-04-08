@@ -43,8 +43,18 @@
         <div class="row p-0 m-0">
           <button class="btn color-bg-main text-white w-auto">Mua ngay</button>
           &nbsp;
-          <button class="btn color-bg-main text-white w-auto">Thêm vào giỏ hàng</button>
+          <button class="btn color-bg-main text-white w-auto" @click="addToCart(dataProduct.slug)">Thêm vào giỏ hàng</button>
         </div>
+      </div>
+      <div>
+        <b-modal centered v-model="modalShow" hide-footer hide-header no-close-on-backdrop>
+          <p class="mb-1 h1 color-main">
+            <b-icon-check-circle-fill></b-icon-check-circle-fill>
+          </p>
+          <p class="m-0">
+            Sản phẩm đã được thêm vào Giỏ hàng
+          </p>
+        </b-modal>
       </div>
     </div>
   </div>
@@ -61,7 +71,8 @@ export default {
     return {
       resRate: 5,
       person: 0,
-      amountProduct: 1
+      amountProduct: 1,
+      modalShow: false
     }
   },
   async mounted () {
@@ -84,6 +95,15 @@ export default {
       if (this.amountProduct > this.dataProduct.amount) {
         this.amountProduct = this.dataProduct.amount
       }
+    },
+    async addToCart (value) {
+      await this.$store.dispatch('cart/addCart', {slug: value, quantity: this.amountProduct}).then(async (result) => {
+        this.modalShow = true
+        setTimeout(() => {
+          this.modalShow = false
+        }, 2000)
+      }).catch((e) => {
+      })
     }
   }
 }
@@ -100,5 +120,12 @@ export default {
 }
 .text-dash {
   text-decoration: line-through;
+}
+.modal-content {
+  background-color: #0000007d;
+  border: none;
+  color: #fff;
+  text-align: center;
+  padding: 2em 0em;
 }
 </style>

@@ -49,6 +49,11 @@
                   {{headerLang.contact}}
                 </b-link>
               </b-nav-item>
+              <b-nav-item class="px-0" href="#">
+                <b-link to="/cart" class="nav-link">
+                  <b-icon-cart-dash-fill></b-icon-cart-dash-fill>
+                </b-link>
+              </b-nav-item>
           </b-collapse>
           <b-nav-item v-if="infoUser === null" class="px-0" @click="() => {this.$router.push('/user/login')}">{{headerLang.login}}</b-nav-item>
           <b-nav-item v-if="infoUser === null" class="px-0" @click="() => {this.$router.push('/user/register')}">{{headerLang.registration}}</b-nav-item>

@@ -3,8 +3,8 @@
     <div class="row p-0 m-0">
       <span v-bind:class="((readmore === false) ? '' : 'description-show ') + 'text-description col-12'" v-html="description"></span>
       <div class="col-12 text-right pt-2">
-        <button @click="() => {readmore = true}" v-if="readmore === false" class="btn color-bg-main text-white">Đọc thêm</button>
-        <button @click="() => {readmore = false}" v-else class="btn color-bg-main text-white">Ẩn bớt</button>
+        <button @click="() => {readmore = true}" v-if="readmore === false" class="btn color-bg-main text-white w-auto">Đọc thêm</button>
+        <button @click="() => {readmore = false}" v-else class="btn color-bg-main text-white w-auto">Ẩn bớt</button>
       </div>
     </div>
   </div>

@@ -28,6 +28,8 @@ import DetailProduct from '@/components/DetailProducts/DetailProduct'
 import DetailProductSpecialties from '@/components/DetailProductsSpecialties/DetailProduct'
 import DetailNews from '@/components/DetailNews/DetailNews'
 
+import ResultSearch from '@/components/SearchComponent/ResultComponent'
+
 Vue.use(Router)
 
 export default new Router({
@@ -107,6 +109,10 @@ export default new Router({
         {
           path: 'news/:id',
           component: DetailNews
+        },
+        {
+          path: 'search/result',
+          component: ResultSearch
         }
       ]
     },

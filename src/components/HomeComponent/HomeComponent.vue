@@ -10,7 +10,11 @@
       >
         <b-carousel-slide v-for="(banner, index) in dataBannerHome" :key="index" :img-src="banner.img_banner" :class="'slide__' + index + ' slide__item'"></b-carousel-slide>
       </b-carousel>
-      <SearchBox />
+      <SearchBox
+        @searchType="typeSearch"
+        @searchLocation="locationSearch"
+        @searchPrice="priceSearch"
+      />
       <ItemCard v-for="(item, index) in dataHome" :key="index" :products="item" />
     </div>
   </div>
@@ -43,6 +47,15 @@ export default {
     }
   },
   methods: {
+    async typeSearch (value) {
+      await this.$emit('searchType', value)
+    },
+    async locationSearch (value) {
+      await this.$emit('searchLocation', value)
+    },
+    async priceSearch (value) {
+      await this.$emit('searchPrice', value)
+    },
     async actionFunction () {
       await this.$parent.showLoading()
       await this.handleGetBanner()

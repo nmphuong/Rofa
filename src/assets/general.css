@@ -56,6 +56,9 @@ a {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+.disabled {
+  cursor: not-allowed!important;
+}
 /* End custom css */
 /* Animation */
 .bounce-enter-active {

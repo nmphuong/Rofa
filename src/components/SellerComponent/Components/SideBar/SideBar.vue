@@ -1,6 +1,6 @@
 <template>
   <div class='left'>
-    <span class='left__icon'>
+    <span class='left__icon' @click="sidebarClick">
       <span></span>
       <span></span>
       <span></span>
@@ -62,17 +62,6 @@
 
 <script>
 window.addEventListener('load', async () => {
-  // Expand Left Side
-  var icon = document.querySelector('.left__icon')
-  var left = document.querySelector('.left')
-  icon.addEventListener('click', expand)
-  function expand () {
-    if (left.classList.contains('show')) {
-      left.classList.remove('show')
-    } else {
-      left.classList.add('show')
-    }
-  }
   var menuItem = document.querySelectorAll('.left__menuItem')
   menuItem.forEach(function (el) {
     el.addEventListener('click', openMenu)
@@ -93,6 +82,16 @@ export default {
   data () {
     return {
       //
+    }
+  },
+  methods: {
+    sidebarClick () {
+      var left = document.querySelector('.left')
+      if (left.classList.contains('show')) {
+        left.classList.remove('show')
+      } else {
+        left.classList.add('show')
+      }
     }
   }
 }

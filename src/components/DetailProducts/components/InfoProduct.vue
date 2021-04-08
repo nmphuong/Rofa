@@ -41,9 +41,9 @@
       </div>
       <div class="col-12 py-2">
         <div class="row p-0 m-0">
-          <button class="btn color-bg-main text-white">Mua ngay</button>
+          <button class="btn color-bg-main text-white w-auto">Mua ngay</button>
           &nbsp;
-          <button class="btn color-bg-main text-white">Thêm vào giỏ hàng</button>
+          <button class="btn color-bg-main text-white w-auto">Thêm vào giỏ hàng</button>
         </div>
       </div>
     </div>

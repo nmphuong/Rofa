@@ -1,6 +1,6 @@
 <template>
   <div class="row p-0 m-0" v-if="dataSpecialties !== null">
-    <b-link :to="'/specialties/' + data.id" v-for="(data, index) in dataSpecialties" :key="index" class="specialties-component col-lg-3 col-md-4 col-sm-4 col-6 p-0 m-0 text-dark">
+    <b-link :to="'/products/' + data.slug" v-for="(data, index) in dataSpecialties" :key="index" class="specialties-component col-lg-3 col-md-4 col-sm-4 col-6 p-0 m-0 text-dark">
       <div class="w-100">
         <div class="row p-0 m-0">
           <div class="col-12 p-0 m-0">

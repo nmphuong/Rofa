@@ -18,6 +18,9 @@
           :bannerSeaFood="bannerSeaFood"
           :dataFoodSupplies="dataFoodSupplies"
           :bannerFoodSupplies="bannerFoodSupplies"
+          :valueTypeSearch="valueSearchType"
+          :valueLocationSearch="valueSearchLocation"
+          :valuePriceSearch="valueSearchPrice"
           @HomeData="dataHomeFunc"
           @HomeBanner="bannerHomeFunc"
           @SpecialtiesData="dataSpecialtiesFunc"
@@ -30,6 +33,9 @@
           @SeaFoodBanner="bannerSeaFoodFunc"
           @FoodSuppliesData="dataFoodSuppliesFunc"
           @FoodSuppliesBanner="bannerFoodSuppliesFunc"
+          @searchType="typeSearch"
+          @searchLocation="locationSearch"
+          @searchPrice="priceSearch"
         ></router-view>
       </div>
     </div>
@@ -53,7 +59,10 @@ export default {
       dataSeaFood: null,
       bannerSeaFood: null,
       dataFoodSupplies: null,
-      bannerFoodSupplies: null
+      bannerFoodSupplies: null,
+      valueSearchType: null,
+      valueSearchLocation: null,
+      valueSearchPrice: null
     }
   },
   async mounted () {
@@ -74,6 +83,15 @@ export default {
     },
     hideLoading () {
       this.loading.hide()
+    },
+    async typeSearch (value) {
+      this.valueSearchType = value
+    },
+    async locationSearch (value) {
+      this.valueSearchLocation = value
+    },
+    async priceSearch (value) {
+      this.valueSearchPrice = value
     },
     async dataHomeFunc (value) {
       this.dataHome = value

@@ -9,7 +9,11 @@
         <img v-if="this.$route.path === '/products/food-supplies' && bannerFoodSupplies !== null" class="w-100" :src="bannerFoodSupplies.data.data[0].img_banner" alt="">
       </div>
     </div>
-    <SearchBox />
+    <SearchBox
+      @searchType="typeSearch"
+      @searchLocation="locationSearch"
+      @searchPrice="priceSearch"
+    />
     <div class="row p-0 m-0">
       <div class="col-md-3">
         <Sidebar />
@@ -62,6 +66,15 @@ export default {
   mounted () {
   },
   methods: {
+    async typeSearch (value) {
+      await this.$emit('searchType', value)
+    },
+    async locationSearch (value) {
+      await this.$emit('searchLocation', value)
+    },
+    async priceSearch (value) {
+      await this.$emit('searchPrice', value)
+    },
     async dataSpecialtiesFunc (value) {
       await this.$emit('SpecialtiesData', value)
     },

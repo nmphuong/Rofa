@@ -47,6 +47,7 @@
 
 <script>
 import { authenLang } from '../../Lang/vi/authen'
+import '@/assets/script'
 export default {
   props: [
     'loginvs'

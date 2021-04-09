@@ -41,7 +41,7 @@
       </div>
       <div class="col-12 py-2">
         <div class="row p-0 m-0">
-          <button class="btn color-bg-main text-white w-auto">Mua ngay</button>
+          <button class="btn color-bg-main text-white w-auto" @click="buyProductNow(dataProduct.slug)">Mua ngay</button>
           &nbsp;
           <button class="btn color-bg-main text-white w-auto" @click="addToCart(dataProduct.slug)">Thêm vào giỏ hàng</button>
         </div>
@@ -96,7 +96,19 @@ export default {
         this.amountProduct = this.dataProduct.amount
       }
     },
+    async buyProductNow (value) {
+      await this.checkProfile()
+      await this.$store.dispatch('cart/addCart', {slug: value, quantity: this.amountProduct}).then(async (result) => {
+        this.modalShow = true
+        await setTimeout(() => {
+          this.modalShow = false
+        }, 2000)
+        this.$router.push('/cart')
+      }).catch((e) => {
+      })
+    },
     async addToCart (value) {
+      await this.checkProfile()
       await this.$store.dispatch('cart/addCart', {slug: value, quantity: this.amountProduct}).then(async (result) => {
         this.modalShow = true
         setTimeout(() => {
@@ -104,6 +116,12 @@ export default {
         }, 2000)
       }).catch((e) => {
       })
+    },
+    async checkProfile () {
+      var loginCustomer = JSON.parse(localStorage.getItem('Oaj0mZteIDsw3vgVxYCbcustomers'))
+      if (loginCustomer === undefined || loginCustomer === null || loginCustomer.loging === false) {
+        this.$router.push('/user/login')
+      }
     }
   }
 }

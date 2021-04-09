@@ -113,7 +113,7 @@ export default {
           await this.$store.dispatch('auth/loginSeller', this.user).then(() => {
             this.error_messages = ''
             this.account_incorrect = false
-            this.$router.push('/')
+            this.$router.push('/seller/dashboard')
             this.$parent.info()
             this.$parent.hideLoading()
           }).catch((e) => {
@@ -137,7 +137,7 @@ export default {
       } else if (this.loginWith === 'seller') {
         var seller = JSON.parse(localStorage.getItem('Oaj0mZteIDsw3vgVxYCbsellers'))
         if (seller !== null && seller.loging === true) {
-          this.$router.push('/')
+          this.$router.push('/seller/dashboard')
         }
       }
     }

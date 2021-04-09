@@ -31,10 +31,12 @@
                 <td data-label='Từ khoá'>dress, vay</td>
                 <td data-label='Thời gian'>2020-07-13 21:31:05</td>
                 <td data-label='Sửa' class='right__iconTable'>
-                  <a href=''><img src='assets/icon-edit.svg' alt=''/></a>
+                  <a href=''><img src='assets/icon-edit.svg' alt='' /></a>
                 </td>
                 <td data-label='Xoá' class='right__iconTable'>
-                  <a href=''><img src='assets/icon-trash-black.svg' alt=''/></a>
+                  <a href=''
+                    ><img src='assets/icon-trash-black.svg' alt=''
+                  /></a>
                 </td>
               </tr>
               <tr>

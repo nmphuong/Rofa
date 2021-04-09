@@ -101,14 +101,17 @@ export default new Router({
         },
         {
           path: 'products/:id',
+          name: 'DetailProduct',
           component: DetailProduct
         },
         {
           path: 'specialties/:id',
+          name: 'DetailSpecialties',
           component: DetailProductSpecialties
         },
         {
           path: 'news/:id',
+          name: 'DetailNews',
           component: DetailNews
         },
         {

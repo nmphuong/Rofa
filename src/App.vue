@@ -1,15 +1,14 @@
 <template>
   <div id="app">
-    <Header :infoUser="infoUser" :isCustomer ="isCustomer" :isSeller="isSeller" />
+    <Header v-if="this.routeCustomer.includes(this.$router.history.current.path.substring(this.$router.history.current.path.lastIndexOf('/'), this.$router.history.current.path.length)) || this.routeCustomer.includes(this.$router.history.current.name) || (this.$route.name === 'Login' || this.$route.name === 'Register' || this.$route.name === 'Authenticate')" :infoUser="infoUser" :isCustomer ="isCustomer" :isSeller="isSeller" />
     <router-view :loginvs="loginvs"></router-view>
-    <Footer v-if="this.$route.name !== 'Login' && this.$route.name !== 'Register' && this.$route.name !== 'Authenticate'" />
+    <Footer v-if="(this.$route.name !== 'Login' && this.$route.name !== 'Register' && (this.$route.name !== 'Authenticate') && this.routeCustomer.includes(this.$router.history.current.path.substring(this.$router.history.current.path.lastIndexOf('/'), this.$router.history.current.path.length)) || this.routeCustomer.includes(this.$router.history.current.name))" />
   </div>
 </template>
 
 <script>
 import Header from './components/HeaderComponent/Header'
 import Footer from './components/FooterComponent/Footer'
-import './assets/script'
 export default {
   name: 'App',
   data () {
@@ -17,13 +16,74 @@ export default {
       isCustomer: false,
       isSeller: false,
       infoUser: null,
-      loginvs: 'customer'
+      loginvs: 'customer',
+      routeSeller: ['/dashboard', '/add-product', '/view-product'],
+      routeNameSeller: [],
+      routeCustomer: ['/', '/gioi-thieu', '/contacts', '/products', '/specialties', '/fresh-vegetable', '/agricultural', '/sea-food', '/food-supplies', '/search/result', '/cart'],
+      routeNameCustomer: ['DetailProduct', 'DetailSpecialties', 'DetailNews']
     }
   },
-  mounted () {
-    this.info()
+  async mounted () {
+    await this.checkCustomer()
+    await this.checkSeller()
+    await this.info()
   },
   methods: {
+    checkCustomer () {
+      if (this.routeCustomer.includes(this.$router.history.current.path.substring(this.$router.history.current.path.lastIndexOf('/'), this.$router.history.current.path.length)) || this.routeCustomer.includes(this.$router.history.current.name)) {
+        // console.log('checkCustomer')
+        var loginCustomer = JSON.parse(localStorage.getItem('Oaj0mZteIDsw3vgVxYCbcustomers'))
+        if (loginCustomer !== undefined && loginCustomer !== null) {
+          if (loginCustomer.loging === false) {
+            this.$store.dispatch('auth/getProfileCustomer').then((result) => {
+              var Oaj0mZteIDsw3vgVxYCbcustomers = '{"token":"' + loginCustomer.token + '", "loging":' + true + '}'
+              localStorage.setItem('Oaj0mZteIDsw3vgVxYCbcustomers', Oaj0mZteIDsw3vgVxYCbcustomers)
+              //
+              var seller = JSON.parse(localStorage.getItem('Oaj0mZteIDsw3vgVxYCbsellers'))
+              if (seller !== null) {
+                var Oaj0mZteIDsw3vgVxYCbsellers = '{"token":"' + seller.token + '", "loging":' + false + '}'
+                localStorage.setItem('Oaj0mZteIDsw3vgVxYCbsellers', Oaj0mZteIDsw3vgVxYCbsellers)
+              }
+              this.infoUser = result
+              this.isCustomer = true
+              this.isSeller = false
+            }).catch((e) => {
+            })
+          }
+        }
+      }
+    },
+    checkSeller () {
+      if (this.routeSeller.includes(this.$router.history.current.path.substring(this.$router.history.current.path.lastIndexOf('/'), this.$router.history.current.path.length)) || this.routeNameSeller.includes(this.$router.history.current.name)) {
+        // console.log('checkSeller')
+        var loginSellers = JSON.parse(localStorage.getItem('Oaj0mZteIDsw3vgVxYCbsellers'))
+        if (loginSellers === undefined || loginSellers === null) {
+          this.loginWith('seller')
+        } else {
+          if (loginSellers === null) {
+            this.loginWith('seller')
+          } else {
+            if (loginSellers.loging === false) {
+              this.$store.dispatch('auth/getProfileSellers').then((result) => {
+                var Oaj0mZteIDsw3vgVxYCbsellers = '{"token":"' + loginSellers.token + '", "loging":' + true + '}'
+                localStorage.setItem('Oaj0mZteIDsw3vgVxYCbsellers', Oaj0mZteIDsw3vgVxYCbsellers)
+                //
+                var customer = JSON.parse(localStorage.getItem('Oaj0mZteIDsw3vgVxYCbcustomers'))
+                if (customer !== null) {
+                  var Oaj0mZteIDsw3vgVxYCbcustomers = '{"token":"' + customer.token + '", "loging":' + false + '}'
+                  localStorage.setItem('Oaj0mZteIDsw3vgVxYCbcustomers', Oaj0mZteIDsw3vgVxYCbcustomers)
+                }
+                this.infoUser = result
+                this.isSeller = true
+                this.isCustomer = false
+              }).catch((e) => {
+                this.loginWith('seller')
+              })
+            }
+          }
+        }
+      }
+    },
     loginWith (vs) {
       var loading = this.$loading.show({
         container: this.fullPage ? null : this.$refs.formContainer,
@@ -102,16 +162,18 @@ export default {
       this.isCustomer = false
       this.isSeller = false
       this.infoUser = null
-      var customer = JSON.parse(localStorage.getItem('Oaj0mZteIDsw3vgVxYCbcustomers'))
-      if (customer !== null) {
-        var Oaj0mZteIDsw3vgVxYCbcustomers = '{"token":"' + customer.token + '", "loging":' + false + '}'
-        localStorage.setItem('Oaj0mZteIDsw3vgVxYCbcustomers', Oaj0mZteIDsw3vgVxYCbcustomers)
-      }
-      var seller = JSON.parse(localStorage.getItem('Oaj0mZteIDsw3vgVxYCbsellers'))
-      if (seller !== null) {
-        var Oaj0mZteIDsw3vgVxYCbsellers = '{"token":"' + seller.token + '", "loging":' + false + '}'
-        localStorage.setItem('Oaj0mZteIDsw3vgVxYCbsellers', Oaj0mZteIDsw3vgVxYCbsellers)
-      }
+      localStorage.removeItem('Oaj0mZteIDsw3vgVxYCbcustomers')
+      localStorage.removeItem('Oaj0mZteIDsw3vgVxYCbsellers')
+      // var customer = JSON.parse(localStorage.getItem('Oaj0mZteIDsw3vgVxYCbcustomers'))
+      // if (customer !== null) {
+      //   var Oaj0mZteIDsw3vgVxYCbcustomers = '{"token":"' + customer.token + '", "loging":' + false + '}'
+      //   localStorage.setItem('Oaj0mZteIDsw3vgVxYCbcustomers', Oaj0mZteIDsw3vgVxYCbcustomers)
+      // }
+      // var seller = JSON.parse(localStorage.getItem('Oaj0mZteIDsw3vgVxYCbsellers'))
+      // if (seller !== null) {
+      //   var Oaj0mZteIDsw3vgVxYCbsellers = '{"token":"' + seller.token + '", "loging":' + false + '}'
+      //   localStorage.setItem('Oaj0mZteIDsw3vgVxYCbsellers', Oaj0mZteIDsw3vgVxYCbsellers)
+      // }
     },
     info () {
       var loginCustomer = JSON.parse(localStorage.getItem('Oaj0mZteIDsw3vgVxYCbcustomers'))
@@ -136,6 +198,12 @@ export default {
   watch: {
     '$route' (to, from) {
       if (to.name !== 'Login' && to.name !== 'Register' && to.name !== 'FortgotPassword') {
+        if (this.routeCustomer.includes(to.path) || this.routeNameCustomer.includes(to.name)) {
+          this.checkCustomer()
+        }
+        if (this.routeSeller.includes(to.path) || this.routeNameSeller.includes(to.name)) {
+          this.checkSeller()
+        }
         var loginCustomer = JSON.parse(localStorage.getItem('Oaj0mZteIDsw3vgVxYCbcustomers'))
         var loginSellers = JSON.parse(localStorage.getItem('Oaj0mZteIDsw3vgVxYCbsellers'))
         var e = this

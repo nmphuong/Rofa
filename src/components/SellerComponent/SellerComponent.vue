@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="wrapper">
-      <div class="container">
+      <div class="container p-0 m-0">
         <div class="dashboard">
           <SideBar />
           <router-view></router-view>
@@ -74,7 +74,6 @@ body {
   grid-template-columns: 1fr;
   justify-content: center;
   align-items: center;
-  /* height: 100vh; */
   box-sizing: border-box;
 }
 
@@ -85,9 +84,8 @@ body {
 }
 
 .wrapper .container {
-  width: 100%;
-  max-width: 1440px;
-  height: 100%;
+  min-width: 100%;
+  min-height: 100vh;
   margin: 0 auto;
   transition: all 0.4s ease;
   /* overflow: hidden; */
@@ -104,7 +102,7 @@ body {
 .dashboard {
   display: flex;
   background: #f5f6fa;
-  height: 100%;
+  min-height: 100vh;
   width: 100%;
 }
 
@@ -124,19 +122,42 @@ body {
   flex-direction: column;
   transition: all 0.6s 0.2s ease;
   z-index: 2;
-  overflow-y: scroll;
+  /* overflow-y: auto;
+  max-height: 100vh;
+  position: sticky;
+  top: 0; */
 }
 
 .left::-webkit-scrollbar {
   width: 0px;
 }
 
+@media screen and (min-width: 800px) {
+  .left {
+    background: #fefefe;
+    width: 100%;
+    max-width: 260px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    transition: all 0.6s 0.2s ease;
+    z-index: 2;
+    overflow-y: auto;
+    max-height: 100vh;
+    position: sticky;
+    top: 0;
+  }
+}
+
 @media screen and (max-width: 799px) {
   .left {
     border-radius: 0px;
     max-width: 50px;
-    position: absolute;
+    position: sticky;
+    top: 0;
     height: 100vh;
+    overflow-y: auto;
   }
 }
 

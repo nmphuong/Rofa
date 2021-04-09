@@ -43,6 +43,7 @@
 </template>
 
 <script>
+import '@/assets/script'
 export default {
   name: 'MasterPage',
   data () {
@@ -62,10 +63,14 @@ export default {
       bannerFoodSupplies: null,
       valueSearchType: null,
       valueSearchLocation: null,
-      valueSearchPrice: null
+      valueSearchPrice: null,
+      pathCheckRoute: ['/cart']
     }
   },
   async mounted () {
+    if (this.pathCheckRoute.includes(this.$router.history.current.path.substring(this.$router.history.current.path.lastIndexOf('/'), this.$router.history.current.path.length))) {
+      this.checkProfile()
+    }
   },
   methods: {
     showLoading () {
@@ -128,9 +133,20 @@ export default {
     },
     async bannerFoodSuppliesFunc (value) {
       this.bannerFoodSupplies = value
+    },
+    async checkProfile () {
+      var loginCustomer = JSON.parse(localStorage.getItem('Oaj0mZteIDsw3vgVxYCbcustomers'))
+      if (loginCustomer === undefined || loginCustomer === null || loginCustomer.loging === false) {
+        this.$router.push('/user/login')
+      }
     }
   },
   watch: {
+    '$route' (to, from) {
+      if (this.pathCheckRoute.includes(to.path)) {
+        this.checkProfile()
+      }
+    }
   }
 }
 </script>

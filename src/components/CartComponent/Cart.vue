@@ -1,7 +1,7 @@
 <template>
   <div class="w-100">
     <div class="row p-0 m-0">
-      <div class="col-12 p-0 m-0 main pb-5">
+      <div class="col-12 p-0 m-0 main pb-5" v-if="dataCart.length !== 0">
         <!-- name page -->
         <div class="row p-0 m-0 justify-content-center py-5">
           <span class="h4 font-weight-bold">
@@ -215,6 +215,20 @@
           </div>
         </div>
         <!--  -->
+      </div>
+      <div class="col-12 p-0 m-0 main pb-5" v-if="dataCart.length === 0">
+        <!-- name page -->
+        <div class="row p-0 m-0 justify-content-center py-5">
+          <span class="h4 font-weight-bold">
+            Giỏ Hàng
+          </span>
+        </div>
+        <div class="row p-0 m-0 justify-content-center no-data display-4 text-secondary">
+          <p><b-icon-card-heading class="display-1"></b-icon-card-heading></p>
+        </div>
+        <div class="row p-0 m-0 justify-content-center no-data text-center text-secondary">
+          <p>Bạn chưa có sản phẩm nào</p>
+        </div>
       </div>
     </div>
   </div>

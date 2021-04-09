@@ -889,18 +889,11 @@ body {
   color: #dadce9;
   text-align: center;
 }
-.right__cardTitle:hover {
-color:rgb(10, 167, 10);
-}
 .right__cardNumber {
   font-size: 28px;
   margin-bottom: 15px;
   text-align: center;
 }
-.right__cardNumber:hover{
-color:rgb(10, 167, 10);
-}
-
 .right__cardDesc {
   text-transform: uppercase;
   font-size: 18px;
@@ -910,12 +903,10 @@ color:rgb(10, 167, 10);
   transform: translateY(5px);
   justify-content: center;
   background-color: #909297;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
 
 }
-.right__cardDesc:hover{
-  color:rgb(10, 167, 10);
-}
-
 .right__cardDesc .icon {
   color: #f4fcfc;
   width: 30px;

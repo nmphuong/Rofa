@@ -164,6 +164,9 @@ export default {
       this.infoUser = null
       localStorage.removeItem('Oaj0mZteIDsw3vgVxYCbcustomers')
       localStorage.removeItem('Oaj0mZteIDsw3vgVxYCbsellers')
+      if (this.routeCustomer.includes(this.$router.history.current.path.substring(this.$router.history.current.path.lastIndexOf('/'), this.$router.history.current.path.length)) || this.routeCustomer.includes(this.$router.history.current.name)) {
+        this.$router.push('/')
+      }
       // var customer = JSON.parse(localStorage.getItem('Oaj0mZteIDsw3vgVxYCbcustomers'))
       // if (customer !== null) {
       //   var Oaj0mZteIDsw3vgVxYCbcustomers = '{"token":"' + customer.token + '", "loging":' + false + '}'

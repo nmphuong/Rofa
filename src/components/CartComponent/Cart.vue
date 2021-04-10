@@ -17,6 +17,7 @@
                 <th></th>
                 <th>Hình ảnh</th>
                 <th>Sản phẩm</th>
+                <th>Nhà cung cấp</th>
                 <th>Giá</th>
                 <th>Số lượng</th>
                 <th>Thành tiền</th>
@@ -26,7 +27,13 @@
               <!-- Info Product -->
               <tr v-for="(element, index) in dataCart" :key="index">
                 <td class="vertical-middle text-danger">
-                  <b-icon-trash class="icon-del" @click="deleteProductCart(element.id)"></b-icon-trash>
+                  <div class="d-flex align-items-center">
+                    <b-icon-trash class="icon-del" @click="deleteProductCart(element.id)"></b-icon-trash>&nbsp;
+                    <div class="checkmark custom-control custom-checkbox" style="width: 0px;">
+                      <input v-bind:name="[element.id]" number type="checkbox" autocomplete="off" v-model="selected"  v-bind:class="['custom-control-input', element.id]"  :value="index + '-' + element.id + '-' + element.seller_id" v-bind:id="[element.id]">
+                      <label class="custom-control-label" v-bind:for="[element.id]"></label>
+                    </div>
+                  </div>
                 </td>
                 <td class="d-flex justify-content-center">
                   <div class="img-product-cart" :style="{backgroundImage: 'url(' + element.product_id.images[0] + ')'}"></div>
@@ -35,9 +42,12 @@
                   <span class="text-name-product">{{ element.product_id.name }}</span>
                 </td>
                 <td>
-                  <span v-if="element.promotion_price !== null" :class="((element.product_id.promotion_price !== null) ? 'text-dash' : 'font-weight-bold')">{{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(element.product_id.price)}}</span>&nbsp;&nbsp;
+                  <span>{{ element.seller_id }}</span>
+                </td>
+                <td class="text-right">
+                  <span v-if="element.promotion_price !== null" :class="((element.product_id.promotion_price !== null) ? 'text-dash' : 'font-weight-bold')">{{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(element.product_id.price)}}</span>
                   <span v-if="element.product_id.promotion_price !== null" class="font-weight-bold">
-                    {{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(element.product_id.promotion_price)}}
+                    &nbsp;&nbsp;{{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(element.product_id.promotion_price)}}
                   </span>
                 </td>
                 <td>
@@ -62,7 +72,7 @@
                   </div>
                 </td>
                 <td>
-                  <span>{{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(Number(element.total_price))}}</span>
+                  <span class="text-danger font-weight-bold">{{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(Number(element.total_price))}}</span>
                 </td>
               </tr>
             </tbody>
@@ -72,7 +82,7 @@
             <div class="col-12 p-0 m-0">
               <div class="d-flex w-100 justify-content-end">
                 <span class="total bill font-weight-bold">
-                  <span class="name total">Tổng cộng:</span><span class="total-price-bill">&nbsp;&nbsp;&nbsp;{{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(this.totalBill)}}</span>
+                  <span class="name total">Tổng cộng:</span><span class="total-price-bill text-danger h3 font-weight-bold">&nbsp;&nbsp;&nbsp;{{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(this.totalBill)}}</span>
                 </span>
               </div>
             </div>
@@ -83,7 +93,7 @@
               <div class="d-flex w-100 justify-content-center">
                 <b-link to="/" id="back" class="btn color-bg-main text-white">Trang chủ</b-link>
                 &nbsp;&nbsp;&nbsp;&nbsp;
-                <button id="payment" class="btn color-bg-main text-white">Thanh toán</button>
+                <span @click="thankToanCheckShop" id="payment" class="btn color-bg-main text-white">Thanh toán</span>
               </div>
             </div>
           </div>
@@ -94,7 +104,13 @@
           <div :class="(((index % 2) !== 0) ? 'l' : 'c') + ' p-3'" v-for="(element, index) in dataCart" :key="index">
             <div class="row p-0 m-0">
               <div class="col-1 p-0 m-0 d-flex align-items-center text-danger">
-                <b-icon-trash class="icon-del" @click="deleteProductCart(element.id)"></b-icon-trash>
+                <div class="d-flex align-items-center">
+                  <b-icon-trash class="icon-del" @click="deleteProductCart(element.id)"></b-icon-trash>&nbsp;
+                  <div class="checkmark custom-control custom-checkbox" style="width: 0px;">
+                    <input v-bind:name="[element.id]" number type="checkbox" autocomplete="off" v-model="selected"  v-bind:class="['custom-control-input', element.id]"  :value="index + '-' + element.id + '-' + element.seller_id" v-bind:id="[element.id]">
+                    <label class="custom-control-label" v-bind:for="[element.id]"></label>
+                  </div>
+                </div>
               </div>
               <div class="col-11 p-0 m-0">
                 <div class="w-100">
@@ -102,6 +118,7 @@
                     <div class="col-3 img-product-cart" :style="{backgroundImage: 'url(' + element.product_id.images[0] + ')'}"></div>
                     <div class="col-9">
                       <span class="text-name-product">{{ element.product_id.name }}</span>
+                      <span class="text-name-product">Nhà cung cấp: {{ element.seller_id }}</span>
                       <span v-if="element.promotion_price !== null" :class="((element.product_id.promotion_price !== null) ? 'text-dash' : 'font-weight-bold')">{{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(element.product_id.price)}}</span>&nbsp;&nbsp;
                       <span v-if="element.product_id.promotion_price !== null" class="font-weight-bold">
                         {{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(element.product_id.promotion_price)}}
@@ -125,7 +142,7 @@
                           updateQuantity(element.id, element.quantity)
                         }" :class="((element.quantity >= Number(element.product_id.amount - element.product_id.ammount_product_cart)) ? 'disabled ' : '') + 'btn btn-amount-down'">+</button>
                       </div>
-                      <span>{{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(Number(element.total_price))}}</span>
+                      <span class="text-danger font-weight-bold">{{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(Number(element.total_price))}}</span>
                     </div>
                   </div>
                 </div>
@@ -137,7 +154,7 @@
             <div class="col-12 p-0 m-0">
               <div class="d-flex w-100 justify-content-end">
                 <span class="total bill font-weight-bold">
-                  <span class="name total">Tổng cộng:</span><span class="total-price-bill">&nbsp;&nbsp;&nbsp;{{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(this.totalBill)}}</span>
+                  <span class="name total">Tổng cộng:</span><span class="total-price-bill text-danger h3 font-weight-bold">&nbsp;&nbsp;&nbsp;{{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(this.totalBill)}}</span>
                 </span>
               </div>
             </div>
@@ -148,7 +165,7 @@
               <div class="d-flex w-100 justify-content-center">
                 <b-link to="/" id="back" class="btn color-bg-main text-white">Trang chủ</b-link>
                 &nbsp;&nbsp;&nbsp;&nbsp;
-                <button id="payment" class="btn color-bg-main text-white">Thanh toán</button>
+                <button @click="thankToanCheckShop" id="payment" class="btn color-bg-main text-white">Thanh toán</button>
               </div>
             </div>
           </div>
@@ -158,13 +175,20 @@
           <!-- Table Product -->
           <div :class="(((index % 2) !== 0) ? 'l' : 'c') + ' p-3'" v-for="(element, index) in dataCart" :key="index">
             <div class="row p-0 m-0">
-              <div class="col-1 p-0 m-0 d-flex align-items-center text-danger">
-                <b-icon-trash class="icon-del" @click="deleteProductCart(element.id)"></b-icon-trash>
+              <div class="col-2 p-0 m-0 d-flex align-items-center text-danger">
+                <div class="d-flex align-items-center">
+                  <b-icon-trash class="icon-del" @click="deleteProductCart(element.id)"></b-icon-trash>&nbsp;
+                  <div class="checkmark custom-control custom-checkbox" style="width: 0px;">
+                    <input v-bind:name="[element.id]" number type="checkbox" autocomplete="off" v-model="selected"  v-bind:class="['custom-control-input', element.id]"  :value="index + '-' + element.id + '-' + element.seller_id" v-bind:id="[element.id]">
+                    <label class="custom-control-label" v-bind:for="[element.id]"></label>
+                  </div>
+                </div>
               </div>
-              <div class="col-11 p-0 m-0">
+              <div class="col-10 p-0 m-0">
                 <div class="w-100">
                   <div class="img-product-cart" :style="{backgroundImage: 'url(' + element.product_id.images[0] + ')'}"></div>
                   <span class="text-name-product">{{ element.product_id.name }}</span>
+                  <span class="text-name-product">Nhà cung cấp: {{ element.seller_id }}</span>
                   <span v-if="element.promotion_price !== null" :class="((element.product_id.promotion_price !== null) ? 'text-dash' : 'font-weight-bold')">{{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(element.product_id.price)}}</span>&nbsp;&nbsp;
                   <span v-if="element.product_id.promotion_price !== null" class="font-weight-bold">
                     {{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(element.product_id.promotion_price)}}
@@ -188,7 +212,7 @@
                       updateQuantity(element.id, element.quantity)
                     }" :class="((element.quantity >= Number(element.product_id.amount - element.product_id.ammount_product_cart)) ? 'disabled ' : '') + 'btn btn-amount-down'">+</button>
                   </div>
-                  <span>{{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(Number(element.total_price))}}</span>
+                  <span class=" text-danger font-weight-bold">{{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(Number(element.total_price))}}</span>
                 </div>
               </div>
             </div>
@@ -198,7 +222,7 @@
             <div class="col-12 p-0 m-0">
               <div class="d-flex w-100 justify-content-end">
                 <span class="total bill font-weight-bold">
-                  <span class="name total">Tổng cộng:</span><span class="total-price-bill">&nbsp;&nbsp;&nbsp;{{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(this.totalBill)}}</span>
+                  <span class="name total">Tổng cộng:</span><span class="total-price-bill text-danger h3 font-weight-bold">&nbsp;&nbsp;&nbsp;{{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(this.totalBill)}}</span>
                 </span>
               </div>
             </div>
@@ -209,7 +233,7 @@
               <div class="d-flex w-100 justify-content-center">
                 <b-link to="/" id="back" class="btn color-bg-main text-white">Trang chủ</b-link>
                 &nbsp;&nbsp;&nbsp;&nbsp;
-                <button id="payment" class="btn color-bg-main text-white">Thanh toán</button>
+                <button @click="thankToanCheckShop" id="payment" class="btn color-bg-main text-white">Thanh toán</button>
               </div>
             </div>
           </div>
@@ -231,6 +255,26 @@
         </div>
       </div>
     </div>
+    <div>
+      <b-modal centered v-model="modalShowSelectOne" hide-footer hide-header no-close-on-backdrop>
+        <p class="mb-1 h1 text-danger">
+          <b-icon-exclamation-triangle></b-icon-exclamation-triangle>
+        </p>
+        <p class="m-0">
+          Bạn vui lòng chọn ít nhất 1 sản phẩm
+        </p>
+      </b-modal>
+    </div>
+    <div>
+      <b-modal centered v-model="modalShowSelectOtherShop" hide-footer hide-header no-close-on-backdrop>
+        <p class="mb-1 h1 text-danger">
+          <b-icon-exclamation-triangle></b-icon-exclamation-triangle>
+        </p>
+        <p class="m-0">
+          Bạn vui lòng chọn cùng 1 nhà cung cấp
+        </p>
+      </b-modal>
+    </div>
   </div>
 </template>
 
@@ -239,15 +283,41 @@ export default {
   name: 'Cart',
   data () {
     return {
+      selected: [],
       dataCart: [],
       totalBill: 0,
-      widthScreen: window.innerWidth
+      widthScreen: window.innerWidth,
+      modalShowSelectOne: false,
+      modalShowSelectOtherShop: false
     }
   },
   mounted () {
     this.getCart()
   },
   methods: {
+    async thankToanCheckShop () {
+      if (this.selected.length === 0) {
+        this.modalShowSelectOne = true
+        await setTimeout(() => {
+          this.modalShowSelectOne = false
+        }, 3000)
+      } else {
+        var idShop = this.selected[0].substring(this.selected[0].lastIndexOf('-') + 1, this.selected[0].length)
+        var inValidSelect = false
+        await this.selected.forEach(async (element, index) => {
+          if (element.substring(element.lastIndexOf('-') + 1, element.length) !== idShop) {
+            this.modalShowSelectOtherShop = true
+            await setTimeout(() => {
+              this.modalShowSelectOtherShop = false
+            }, 3000)
+            inValidSelect = true
+          }
+        })
+        if (inValidSelect === false) {
+          console.log(this.selected)
+        }
+      }
+    },
     async deleteProductCart (id) {
       if (confirm('Bạn có muốn xóa sản phẩm ra khỏi giỏ hàng?')) {
         await this.$store.dispatch('cart/deleteProductCart', id).then(async (result) => {
@@ -258,7 +328,11 @@ export default {
     },
     async updateQuantity (id, quantity) {
       await this.$store.dispatch('cart/updateQuantity', {id: id, quantity: quantity}).then(async (result) => {
-        this.getCart()
+        await this.getCart()
+        this.totalBill = 0
+        this.selected.forEach(element => {
+          this.totalBill += Number(this.dataCart[element.substring(0, element.indexOf('-'))].total_price)
+        })
       }).catch((e) => {
       })
     },
@@ -266,11 +340,35 @@ export default {
       await this.$store.dispatch('cart/getMyCart').then(async (result) => {
         this.dataCart = result.data
         this.totalBill = 0
-        this.dataCart.forEach((element) => {
-          this.totalBill += Number(element.total_price)
-        })
       }).catch((e) => {
       })
+    }
+  },
+  watch: {
+    selected () {
+      this.totalBill = 0
+      this.selected.forEach(element => {
+        this.totalBill += Number(this.dataCart[element.substring(0, element.indexOf('-'))].total_price)
+      })
+    }
+  },
+  computed: {
+    selectAll: {
+      get: function () {
+        this.$emit('selected_id', this.selected)
+        return this.items ? this.selected.length === this.items.length : false
+      },
+      set: function (value) {
+        console.log(value)
+        var selecteds = []
+        if (value) {
+          this.items.forEach(function (item) {
+            selecteds.push(item.id)
+          })
+        }
+        this.selected = selecteds
+        this.$emit('selected_id', this.selected)
+      }
     }
   }
 }
@@ -310,6 +408,13 @@ export default {
   background: #dbdbdb;
 }
 .input-quantity {
-    width: 100px;
+  width: 100px;
+}
+.modal-content {
+  background-color: #0000007d;
+  border: none;
+  color: #fff;
+  text-align: center;
+  padding: 2em 0em;
 }
 </style>

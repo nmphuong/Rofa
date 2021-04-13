@@ -1,10 +1,10 @@
 <template>
   <div>
-    <div class="wrapper">
+    <div class="wrapper" v-if="infoSeller !== null">
       <div class="container p-0 m-0">
         <div class="dashboard">
-          <SideBar />
-          <router-view></router-view>
+          <SideBar :dataSeller="infoSeller" />
+          <router-view :dataSeller="infoSeller"></router-view>
         </div>
       </div>
     </div>
@@ -16,7 +16,18 @@ import SideBar from './components/SideBar/SideBar'
 export default {
   data () {
     return {
-      //
+      infoSeller: null
+    }
+  },
+  mounted () {
+    this.getInfo()
+  },
+  methods: {
+    getInfo () {
+      this.$store.dispatch('auth/getProfileSellers').then((result) => {
+        this.infoSeller = result.data.token_data
+      }).catch((e) => {
+      })
     }
   },
   components: {
@@ -163,13 +174,13 @@ body {
 
 @media screen and (max-width: 511px) {
   .left {
-    max-width: 40px;
+    max-width: 60px;
   }
 }
 
 .left__icon {
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   display: none;
   position: absolute;
   right: 5px;
@@ -254,14 +265,17 @@ body {
 }
 
 .left__image {
-  width: 160px;
-  height: 160px;
+  width: 150px;
+  height: 150px;
   border-radius: 100%;
   overflow: hidden;
   margin-bottom: 10px;
   border: solid 2px #E2DFF2;
   cursor: pointer;
   transition: all 0.4s ease;
+  background-position: center!important;
+  background-size: cover!important;
+  background-repeat: no-repeat!important;
 }
 
 .left__image:hover {

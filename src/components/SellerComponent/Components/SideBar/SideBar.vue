@@ -1,83 +1,71 @@
 <template>
-  <div class='left'>
+ <div class='left'>
     <span class='left__icon' @click="sidebarClick">
       <span></span>
       <span></span>
       <span></span>
     </span>
+    <div class='left__logo '>
+        <img class="logo" src="@/assets/logo.png" alt="logo-rofa">
+        <span>Nong San RoFa</span>
+      </div>
     <div class='left__content'>
-      <div class='left__logo'>LOGO</div>
       <div class='left__profile'>
-        <div class='left__image'>
-          <img src='//' alt='' />
+        <div class='left__image' :style="{backgroundImage: 'url(' + dataSeller.url_avatar + ')'}">
         </div>
-        <p class='left__name'>Tai</p>
+        <p class='left__name'>{{ dataSeller.firstname }}&nbsp;{{ dataSeller.lastname }}</p>
       </div>
       <ul class='left__menu'>
         <li class='left__menuItem'>
-          <a href='index.html' class='left__title'
-            > <b-icon-pie-chart-fill></b-icon-pie-chart-fill>&emsp;Thống Kê  </a
-          >
+          <b-link to="/seller/dashboard" class='left__title'>
+            <b-icon-pie-chart-fill></b-icon-pie-chart-fill>&emsp;Thống Kê
+          </b-link>
         </li>
          <li class='left__menuItem'>
-          <a href='' class='left__title'
-            ><b-icon-pie-chart-fill></b-icon-pie-chart-fill>&emsp;Doanh Thu</a
-          >
+          <b-link to="/seller/revenue" class='left__title'>
+            <b-icon-pie-chart-fill></b-icon-pie-chart-fill>&emsp;Doanh Thu
+          </b-link>
         </li>
-        <li class='left__menuItem'>
+        <li class='left__menuItem' @click="openMenu">
           <div class='left__title'>
             <b-icon-pie-chart-fill></b-icon-pie-chart-fill>&emsp;Sản Phẩm
             <span class="left__iconDown"><b-icon-chevron-down></b-icon-chevron-down></span>
           </div>
           <div class='left__text'>
-            <a class='left__link' href='insert_product.html'>Thêm Sản Phẩm</a>
-            <a class='left__link' href='view_product.html'>Xem Sản Phẩm</a>
+            <b-link class='left__link' to='/seller/add-product'>Thêm Sản Phẩm</b-link>
+            <b-link class='left__link' to='/seller/view-product'>Xem Sản Phẩm</b-link>
           </div>
         </li>
-        <li class='left__menuItem'>
+        <li class='left__menuItem' @click="openMenu">
           <div class='left__title'>
             <b-icon-pie-chart-fill></b-icon-pie-chart-fill>&emsp;Đơn hàng
             <span class="left__iconDown"><b-icon-chevron-down></b-icon-chevron-down></span>
           </div>
           <div class='left__text'>
-            <a class='left__link' href='insert_p_category.html'>Hoàn Thành</a>
-            <a class='left__link' href='view_p_category.html'>Đang Vân Chuyển</a>
-            <a class='left__link' href='#'>Đang xử lý</a>
+            <b-link class='left__link' to="/seller/order/processing">Đang xử lý</b-link>
+            <b-link class='left__link' to="/seller/order/transport">Đang Vân Chuyển</b-link>
+            <b-link class='left__link' to="/seller/order/finish">Hoàn Thành</b-link>
           </div>
         </li>
         <li class='left__menuItem'>
-          <a href='view_orders.html' class='left__title'
-            ><b-icon-pie-chart-fill></b-icon-pie-chart-fill>&emsp;Tài Khoản</a
-          >
+          <b-link to="/seller/account" class='left__title'>
+            <b-icon-pie-chart-fill></b-icon-pie-chart-fill>&emsp;Tài Khoản
+          </b-link>
         </li>
         <li class='left__menuItem'>
-          <a href='' class='left__title'
-            ><b-icon-pie-chart-fill></b-icon-pie-chart-fill>&emsp;Đăng Xuất</a
-          >
+          <a href='' class='left__title'><b-icon-pie-chart-fill></b-icon-pie-chart-fill>&emsp;Đăng Xuất</a>
         </li>
       </ul>
     </div>
   </div>
+
 </template>
 
 <script>
-window.addEventListener('load', async () => {
-  var menuItem = document.querySelectorAll('.left__menuItem')
-  menuItem.forEach(function (el) {
-    el.addEventListener('click', openMenu)
-  })
-
-  function openMenu (event) {
-    var currentmenuItem = event.currentTarget
-    if (currentmenuItem.classList.contains('open')) {
-      currentmenuItem.classList.remove('open')
-    } else {
-      currentmenuItem.classList.add('open')
-    }
-  }
-})
-
 export default {
+  props: [
+    'dataSeller'
+  ],
   name: 'SideBarSeller',
   data () {
     return {
@@ -85,6 +73,14 @@ export default {
     }
   },
   methods: {
+    openMenu (event) {
+      var currentmenuItem = event.currentTarget
+      if (currentmenuItem.classList.contains('open')) {
+        currentmenuItem.classList.remove('open')
+      } else {
+        currentmenuItem.classList.add('open')
+      }
+    },
     sidebarClick () {
       var left = document.querySelector('.left')
       if (left.classList.contains('show')) {
@@ -98,4 +94,7 @@ export default {
 </script>
 
 <style>
+.logo{
+  width: 70px;
+}
 </style>

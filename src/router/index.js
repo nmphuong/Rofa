@@ -31,6 +31,13 @@ import DetailNews from '@/components/DetailNews/DetailNews'
 import ResultSearch from '@/components/SearchComponent/ResultComponent'
 import Cart from '@/components/CartComponent/Cart'
 
+import Finish from '@/components/SellerComponent/Components/SingleOrderComponent/Finish'
+import Processing from '@/components/SellerComponent/Components/SingleOrderComponent/Processing'
+import Transport from '@/components/SellerComponent/Components/SingleOrderComponent/Transport'
+
+import Revenue from '@/components/SellerComponent/Components/Revenue/Revenue'
+import Account from '@/components/SellerComponent/Components/Account/Account'
+
 Vue.use(Router)
 
 export default new Router({
@@ -139,6 +146,26 @@ export default new Router({
         {
           path: 'view-product',
           component: ViewProduct
+        },
+        {
+          path: 'order/finish',
+          component: Finish
+        },
+        {
+          path: 'order/processing',
+          component: Processing
+        },
+        {
+          path: 'order/transport',
+          component: Transport
+        },
+        {
+          path: 'revenue',
+          component: Revenue
+        },
+        {
+          path: 'account',
+          component: Account
         }
       ]
     }

@@ -39,40 +39,6 @@
                   /></a>
                 </td>
               </tr>
-              <tr>
-                <td data-label='STT'>2</td>
-                <td data-label='Tên sản phẩm'>Cobi Top, Tuta Skirt</td>
-                <td data-label='Hình ảnh'>
-                  <img src='images/product2.jpg' alt='' />
-                </td>
-                <td data-label='Giá SP'>810.000 ₫</td>
-                <td data-label='Đã bán'>0</td>
-                <td data-label='Từ khoá'>top skirt</td>
-                <td data-label='Thời gian'>2020-07-13 22:19:01</td>
-                <td data-label='Sửa' class='right__iconTable'>
-                  <a href=''><img src='assets/icon-edit.svg' alt=''/></a>
-                </td>
-                <td data-label='Xoá' class='right__iconTable'>
-                  <a href=''><img src='assets/icon-trash-black.svg' alt=''/></a>
-                </td>
-              </tr>
-              <tr>
-                <td data-label='STT'>3</td>
-                <td data-label='Tên sản phẩm'>Beda Dress</td>
-                <td data-label='Hình ảnh'>
-                  <img src='images/product3.jpg' alt='' />
-                </td>
-                <td data-label='Giá SP'>590.000 ₫</td>
-                <td data-label='Đã bán'>1</td>
-                <td data-label='Từ khoá'>dress, vay</td>
-                <td data-label='Thời gian'>2020-07-13 21:30:41</td>
-                <td data-label='Sửa' class='right__iconTable'>
-                  <a href=''><img src='assets/icon-edit.svg' alt=''/></a>
-                </td>
-                <td data-label='Xoá' class='right__iconTable'>
-                  <a href=''><img src='assets/icon-trash-black.svg' alt=''/></a>
-                </td>
-              </tr>
             </tbody>
           </table>
         </div>

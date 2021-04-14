@@ -24,7 +24,7 @@
                 <td data-label='STT'>{{ index + 1}}</td>
                 <td data-label='Tên sản phẩm'>{{ item.name }}</td>
                 <td data-label='Hình ảnh'>
-                 <div class="img-product" :style="{backgroundImage: 'url(' + item.images[0] + ')'}"></div>
+                 <div class='img-product' :style="{backgroundImage: 'url(' + item.images[0] + ')'}"></div>
                 </td>
                 <td data-label='Giá SP'>
                   <span>{{item.price}} Vnd</span>

@@ -19,7 +19,7 @@
       <div class="col-12 p-0 py-2 m-0" v-if="dataSameProduct.length !== 0 && dataRateAmount.length !== 0">
         <hr />
       </div>
-      <div class="col-12" v-if="dataRateAmount.length !== 0">
+      <div class="col-12">
         <Rate :dataRateAmount="dataRateAmount" />
       </div>
       <div class="col-12 p-0 py-2 m-0" v-if="dataRateAmount.length !== 0">

@@ -1,8 +1,8 @@
 <template>
   <div id="app">
-    <Header v-if="this.routeCustomer.includes(this.$router.history.current.path.substring(this.$router.history.current.path.lastIndexOf('/'), this.$router.history.current.path.length)) || this.routeCustomer.includes(this.$router.history.current.name) || (this.$route.name === 'Login' || this.$route.name === 'Register' || this.$route.name === 'Authenticate')" :infoUser="infoUser" :isCustomer ="isCustomer" :isSeller="isSeller" />
-    <router-view :loginvs="loginvs"></router-view>
-    <Footer v-if="(this.$route.name !== 'Login' && this.$route.name !== 'Register' && (this.$route.name !== 'Authenticate') && this.routeCustomer.includes(this.$router.history.current.path.substring(this.$router.history.current.path.lastIndexOf('/'), this.$router.history.current.path.length)) || this.routeCustomer.includes(this.$router.history.current.name))" />
+    <Header v-if="this.routeCustomer.includes(this.$router.history.current.name) || (this.$route.name === 'Login' || this.$route.name === 'Register' || this.$route.name === 'Authenticate') || this.routeCustomer.includes(this.$router.history.current.path.substring(0, this.$router.history.current.path.lastIndexOf('/'))) || this.routeCustomer.includes(this.$router.history.current.path.substring(0, this.$router.history.current.path.length))" :infoUser="infoUser" :isCustomer ="isCustomer" :isSeller="isSeller" />
+    <router-view :loginvs="loginvs" :infoUser="infoUser"></router-view>
+    <Footer v-if="((this.$route.name !== 'Login' && this.$route.name !== 'Register' && (this.$route.name !== 'Authenticate') && this.routeCustomer.includes(this.$router.history.current.path.substring(0, this.$router.history.current.path.lastIndexOf('/')))) || ((this.$route.name !== 'Login' && this.$route.name !== 'Register' && (this.$route.name !== 'Authenticate') && this.routeCustomer.includes(this.$router.history.current.path.substring(0, this.$router.history.current.path.length)))) || this.routeCustomer.includes(this.$router.history.current.name))" />
   </div>
 </template>
 
@@ -19,7 +19,7 @@ export default {
       loginvs: 'customer',
       routeSeller: ['/dashboard', '/add-product', '/view-product'],
       routeNameSeller: [],
-      routeCustomer: ['/', '/gioi-thieu', '/contacts', '/products', '/specialties', '/fresh-vegetable', '/agricultural', '/sea-food', '/food-supplies', '/search/result', '/cart'],
+      routeCustomer: ['/', '/gioi-thieu', '/contacts', '/products', '/specialties', '/fresh-vegetable', '/agricultural', '/sea-food', '/food-supplies', '/search/result', '/cart', '/news', '/confirm', '/cart/history/order', '/cart/order'],
       routeNameCustomer: ['DetailProduct', 'DetailSpecialties', 'DetailNews']
     }
   },
@@ -27,10 +27,11 @@ export default {
     await this.checkCustomer()
     await this.checkSeller()
     await this.info()
+    console.log(this.$router)
   },
   methods: {
     checkCustomer () {
-      if (this.routeCustomer.includes(this.$router.history.current.path.substring(this.$router.history.current.path.lastIndexOf('/'), this.$router.history.current.path.length)) || this.routeCustomer.includes(this.$router.history.current.name)) {
+      if (this.routeCustomer.includes(this.$router.history.current.path.substring(0, this.$router.history.current.path.lastIndexOf('/'))) || this.routeCustomer.includes(this.$router.history.current.name)) {
         // console.log('checkCustomer')
         var loginCustomer = JSON.parse(localStorage.getItem('Oaj0mZteIDsw3vgVxYCbcustomers'))
         if (loginCustomer !== undefined && loginCustomer !== null) {

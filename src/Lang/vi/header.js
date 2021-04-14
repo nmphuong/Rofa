@@ -14,5 +14,6 @@ exports.headerLang = {
   registration: 'Đăng ký',
   logout: 'Đăng xuất',
   switchSeller: 'Chuyển qua người bán',
-  switchCutomer: 'Chuyển qua người mua'
+  switchCutomer: 'Chuyển qua người mua',
+  historyOrder: 'Lịch sử mua hàng'
 }

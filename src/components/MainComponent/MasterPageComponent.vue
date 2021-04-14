@@ -6,6 +6,7 @@
     <div class="w-100">
       <div class="container-fluid p-0 m-0">
         <router-view
+          :infoUser="infoUser"
           :dataHome="dataHome"
           :dataBannerHome="dataBannerHome"
           :dataSpecialties="dataSpecialties"
@@ -39,15 +40,25 @@
         ></router-view>
       </div>
     </div>
+    <div class="ads">
+      <b-modal id="ads-md" centered v-model="modalAds" hide-footer hide-header>
+        <b-icon-x-circle-fill @click="() => {this.modalAds = false}" class="close-modal"></b-icon-x-circle-fill>
+        <div class="cnt-ads" style="background-image: url('https://cf.shopee.vn/file/357a79dcaa7c695ca8557d8eb4f63107_xxhdpi')"></div>
+      </b-modal>
+    </div>
   </div>
 </template>
 
 <script>
 import '@/assets/script'
 export default {
+  props: [
+    'infoUser'
+  ],
   name: 'MasterPage',
   data () {
     return {
+      modalAds: false,
       loading: false,
       dataHome: null,
       dataBannerHome: null,
@@ -68,11 +79,15 @@ export default {
     }
   },
   async mounted () {
+    this.showModal()
     if (this.pathCheckRoute.includes(this.$router.history.current.path.substring(this.$router.history.current.path.lastIndexOf('/'), this.$router.history.current.path.length))) {
       this.checkProfile()
     }
   },
   methods: {
+    showModal () {
+      this.modalAds = true
+    },
     showLoading () {
       this.loading = this.$loading.show({
         container: this.fullPage ? null : this.$refs.formContainer,
@@ -151,8 +166,29 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 .text-dash {
   text-decoration: line-through;
+}
+#ads-md___BV_modal_content_ {
+  background-color: rgba(0, 0, 0, 0)!important;
+  border: none;
+  color: #fff;
+  text-align: center;
+  padding: 2em 0em;
+}
+.cnt-ads {
+  width: 100%;
+  height: 500px;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.close-modal {
+  font-size: 2em;
+  position: absolute;
+  right: 0;
+  top: 0;
+  color: #9c9c9c;
 }
 </style>

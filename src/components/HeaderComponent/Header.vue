@@ -59,6 +59,7 @@
           <b-nav-item v-if="infoUser === null" class="px-0" @click="() => {this.$router.push('/user/register')}">{{headerLang.registration}}</b-nav-item>
           <b-nav-item-dropdown class="img__avt m-auto" :style="{backgroundImage: 'url(' + infoUser.data.token_data.url_avatar + ')'}" v-if="infoUser !== null" right>
             <b-dropdown-item @click="logout">{{headerLang.logout}}</b-dropdown-item>
+            <b-dropdown-item><b-link to="/cart/history">{{headerLang.historyOrder}}</b-link></b-dropdown-item>
             <!-- <b-dropdown-item @click="() => {this.$parent.loginWith('seller')}" v-if="isCustomer === true">{{headerLang.switchSeller}}</b-dropdown-item>
             <b-dropdown-item @click="() => {this.$parent.loginWith('customer')}" v-if="isSeller === true">{{headerLang.switchCutomer}}</b-dropdown-item> -->
           </b-nav-item-dropdown>

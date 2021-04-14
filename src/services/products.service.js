@@ -74,5 +74,30 @@ class ProductsService {
       return data.data
     }
   }
+  async addRate (dataRate) {
+    var keys = Object.keys(dataRate)
+    let formData = new FormData()
+    keys.forEach(key => {
+      if (key === 'content_image') {
+        if (dataRate[key].length !== 0) {
+          for (var i = 0; i < dataRate[key].length; i++) {
+            formData.append(key + '[' + i + ']', dataRate[key][i])
+          }
+        }
+      } else {
+        formData.append(key, dataRate[key])
+      }
+    })
+    var data = await postQuerySchema({
+      tokenCustomer: true,
+      data: formData,
+      path: 'customer/add-rate-product/' + dataRate.id
+    })
+    if (data instanceof Error) {
+      return data
+    } else {
+      return data.data
+    }
+  }
 }
 export default new ProductsService()

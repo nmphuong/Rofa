@@ -20,6 +20,9 @@ export const products = {
     },
     async getDatailNews ({ commit }, id) {
       return ProductsService.getDatailNews(id)
+    },
+    async addRate ({ commit }, dataRate) {
+      return ProductsService.addRate(dataRate)
     }
   }
 }

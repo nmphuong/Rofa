@@ -31,11 +31,12 @@
       </div>
       <div class="col-12 py-2">
         <div class="row p-0 m-0 align-items-center">
+          <p class="col-12 p-0 m-0">Số lượng có sẵn: {{ (Number(this.dataProduct.amount) - Number(this.dataProduct.ammount_product_cart)) }}</p>
           <span>Số lượng:&nbsp;&nbsp;&nbsp;</span>
           <div class="d-flex">
             <button :disabled="amountProduct <= 1" @click="() => {this.amountProduct = Number(this.amountProduct) - 1}" :class="((amountProduct <= 1) ? 'disabled ' : '') + 'btn btn-amount-up'">-</button>
-            <input @change="checkValidAmount" type="text" class="text-center border-0" v-model="amountProduct">
-            <button :disabled="amountProduct >= Number(dataProduct.amount)" @click="() => {this.amountProduct = Number(this.amountProduct) + 1}" :class="((amountProduct >= Number(dataProduct.amount)) ? 'disabled ' : '') + 'btn btn-amount-down'">+</button>
+            <input @change="checkValidAmount" type="number" class="text-center border-0" v-model="amountProduct">
+            <button :disabled="amountProduct >= Number(dataProduct.amount)" @click="() => {this.amountProduct = Number(this.amountProduct) + 1}" :class="((amountProduct >= (Number(dataProduct.amount) - Number(dataProduct.ammount_product_cart))) ? 'disabled ' : '') + 'btn btn-amount-down'">+</button>
           </div>
         </div>
       </div>
@@ -92,8 +93,8 @@ export default {
       if (this.amountProduct < 1) {
         this.amountProduct = 1
       }
-      if (this.amountProduct > this.dataProduct.amount) {
-        this.amountProduct = this.dataProduct.amount
+      if (this.amountProduct > (Number(this.dataProduct.amount) - Number(this.dataProduct.ammount_product_cart))) {
+        this.amountProduct = (Number(this.dataProduct.amount) - Number(this.dataProduct.ammount_product_cart))
       }
     },
     async buyProductNow (value) {

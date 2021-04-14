@@ -30,7 +30,7 @@
                   <div class="d-flex align-items-center">
                     <b-icon-trash class="icon-del" @click="deleteProductCart(element.id)"></b-icon-trash>&nbsp;
                     <div class="checkmark custom-control custom-checkbox" style="width: 0px;">
-                      <input v-bind:name="[element.id]" number type="checkbox" autocomplete="off" v-model="selected"  v-bind:class="['custom-control-input', element.id]"  :value="index + '-' + element.id + '-' + element.seller_id" v-bind:id="[element.id]">
+                      <input v-bind:name="[element.id]" number type="checkbox" autocomplete="off" v-model="selected"  v-bind:class="['custom-control-input', element.id]"  :value="index + '-' + element.id + '-' + element.seller_id.id" v-bind:id="[element.id]">
                       <label class="custom-control-label" v-bind:for="[element.id]"></label>
                     </div>
                   </div>
@@ -42,7 +42,7 @@
                   <span class="text-name-product">{{ element.product_id.name }}</span>
                 </td>
                 <td>
-                  <span>{{ element.seller_id }}</span>
+                  <span>{{ element.seller_id.firstname }} {{ element.seller_id.lastname}}</span>
                 </td>
                 <td class="text-right">
                   <span v-if="element.promotion_price !== null" :class="((element.product_id.promotion_price !== null) ? 'text-dash' : 'font-weight-bold')">{{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(element.product_id.price)}}</span>
@@ -51,6 +51,11 @@
                   </span>
                 </td>
                 <td>
+                  <div class="d-flex justify-content-center">
+                    <p class="mb-1">
+                      Số lượng có sẵn: {{ Number(element.product_id.amount - element.product_id.ammount_product_cart) }}
+                    </p>
+                  </div>
                   <div class="d-flex justify-content-center">
                     <button :disabled="element.quantity <= 1" @click="() => {
                       element.quantity = Number(element.quantity) - 1
@@ -64,7 +69,7 @@
                         element.quantity = element.product_id.amount - element.product_id.ammount_product_cart
                       }
                       updateQuantity(element.id, element.quantity)
-                    }" type="text" class="text-center border-0 input-quantity" v-model="element.quantity">
+                    }" type="number" class="text-center border-0 input-quantity" v-model="element.quantity">
                     <button :disabled="element.quantity >= Number(element.product_id.amount - element.product_id.ammount_product_cart)" @click="() => {
                       element.quantity = Number(element.quantity) + 1
                       updateQuantity(element.id, element.quantity)
@@ -93,7 +98,7 @@
               <div class="d-flex w-100 justify-content-center">
                 <b-link to="/" id="back" class="btn color-bg-main text-white">Trang chủ</b-link>
                 &nbsp;&nbsp;&nbsp;&nbsp;
-                <span @click="thankToanCheckShop" id="payment" class="btn color-bg-main text-white">Thanh toán</span>
+                <span @click="thankToanCheckShop" id="payment" class="btn color-bg-main text-white">Xác nhận đặt hàng</span>
               </div>
             </div>
           </div>
@@ -107,7 +112,7 @@
                 <div class="d-flex align-items-center">
                   <b-icon-trash class="icon-del" @click="deleteProductCart(element.id)"></b-icon-trash>&nbsp;
                   <div class="checkmark custom-control custom-checkbox" style="width: 0px;">
-                    <input v-bind:name="[element.id]" number type="checkbox" autocomplete="off" v-model="selected"  v-bind:class="['custom-control-input', element.id]"  :value="index + '-' + element.id + '-' + element.seller_id" v-bind:id="[element.id]">
+                    <input v-bind:name="[element.id]" number type="checkbox" autocomplete="off" v-model="selected"  v-bind:class="['custom-control-input', element.id]"  :value="index + '-' + element.id + '-' + element.seller_id.id" v-bind:id="[element.id]">
                     <label class="custom-control-label" v-bind:for="[element.id]"></label>
                   </div>
                 </div>
@@ -118,11 +123,16 @@
                     <div class="col-3 img-product-cart" :style="{backgroundImage: 'url(' + element.product_id.images[0] + ')'}"></div>
                     <div class="col-9">
                       <span class="text-name-product">{{ element.product_id.name }}</span>
-                      <span class="text-name-product">Nhà cung cấp: {{ element.seller_id }}</span>
+                      <span class="text-name-product">Nhà cung cấp: {{ element.seller_id.firstname }} {{ element.seller_id.lastname}}</span>
                       <span v-if="element.promotion_price !== null" :class="((element.product_id.promotion_price !== null) ? 'text-dash' : 'font-weight-bold')">{{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(element.product_id.price)}}</span>&nbsp;&nbsp;
                       <span v-if="element.product_id.promotion_price !== null" class="font-weight-bold">
                         {{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(element.product_id.promotion_price)}}
                       </span>
+                      <div class="d-flex">
+                        <p class="mb-1">
+                          Số lượng có sẵn: {{ Number(element.product_id.amount - element.product_id.ammount_product_cart) }}
+                        </p>
+                      </div>
                       <div>
                         <button :disabled="element.quantity <= 1" @click="() => {
                           element.quantity = Number(element.quantity) - 1
@@ -136,7 +146,7 @@
                             element.quantity = element.product_id.amount - element.product_id.ammount_product_cart
                           }
                           updateQuantity(element.id, element.quantity)
-                        }" type="text" class="text-center border-0 input-quantity" v-model="element.quantity">
+                        }" type="number" class="text-center border-0 input-quantity" v-model="element.quantity">
                         <button :disabled="element.quantity >= Number(element.product_id.amount - element.product_id.ammount_product_cart)" @click="() => {
                           element.quantity = Number(element.quantity) + 1
                           updateQuantity(element.id, element.quantity)
@@ -165,7 +175,7 @@
               <div class="d-flex w-100 justify-content-center">
                 <b-link to="/" id="back" class="btn color-bg-main text-white">Trang chủ</b-link>
                 &nbsp;&nbsp;&nbsp;&nbsp;
-                <button @click="thankToanCheckShop" id="payment" class="btn color-bg-main text-white">Thanh toán</button>
+                <button @click="thankToanCheckShop" id="payment" class="btn color-bg-main text-white">Xác nhận đặt hàng</button>
               </div>
             </div>
           </div>
@@ -179,7 +189,7 @@
                 <div class="d-flex align-items-center">
                   <b-icon-trash class="icon-del" @click="deleteProductCart(element.id)"></b-icon-trash>&nbsp;
                   <div class="checkmark custom-control custom-checkbox" style="width: 0px;">
-                    <input v-bind:name="[element.id]" number type="checkbox" autocomplete="off" v-model="selected"  v-bind:class="['custom-control-input', element.id]"  :value="index + '-' + element.id + '-' + element.seller_id" v-bind:id="[element.id]">
+                    <input v-bind:name="[element.id]" number type="checkbox" autocomplete="off" v-model="selected"  v-bind:class="['custom-control-input', element.id]"  :value="index + '-' + element.id + '-' + element.seller_id.id" v-bind:id="[element.id]">
                     <label class="custom-control-label" v-bind:for="[element.id]"></label>
                   </div>
                 </div>
@@ -188,11 +198,16 @@
                 <div class="w-100">
                   <div class="img-product-cart" :style="{backgroundImage: 'url(' + element.product_id.images[0] + ')'}"></div>
                   <span class="text-name-product">{{ element.product_id.name }}</span>
-                  <span class="text-name-product">Nhà cung cấp: {{ element.seller_id }}</span>
+                  <span class="text-name-product">Nhà cung cấp: {{ element.seller_id.firstname }} {{ element.seller_id.lastname}}</span>
                   <span v-if="element.promotion_price !== null" :class="((element.product_id.promotion_price !== null) ? 'text-dash' : 'font-weight-bold')">{{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(element.product_id.price)}}</span>&nbsp;&nbsp;
                   <span v-if="element.product_id.promotion_price !== null" class="font-weight-bold">
                     {{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(element.product_id.promotion_price)}}
                   </span>
+                  <div class="d-flex">
+                    <p class="mb-1">
+                      Số lượng có sẵn: {{ Number(element.product_id.amount - element.product_id.ammount_product_cart) }}
+                    </p>
+                  </div>
                   <div>
                     <button :disabled="element.quantity <= 1" @click="() => {
                       element.quantity = Number(element.quantity) - 1
@@ -206,7 +221,7 @@
                         element.quantity = element.product_id.amount - element.product_id.ammount_product_cart
                       }
                       updateQuantity(element.id, element.quantity)
-                    }" type="text" class="text-center border-0 input-quantity" v-model="element.quantity">
+                    }" type="number" class="text-center border-0 input-quantity" v-model="element.quantity">
                     <button :disabled="element.quantity >= Number(element.product_id.amount - element.product_id.ammount_product_cart)" @click="() => {
                       element.quantity = Number(element.quantity) + 1
                       updateQuantity(element.id, element.quantity)
@@ -233,7 +248,7 @@
               <div class="d-flex w-100 justify-content-center">
                 <b-link to="/" id="back" class="btn color-bg-main text-white">Trang chủ</b-link>
                 &nbsp;&nbsp;&nbsp;&nbsp;
-                <button @click="thankToanCheckShop" id="payment" class="btn color-bg-main text-white">Thanh toán</button>
+                <button @click="thankToanCheckShop" id="payment" class="btn color-bg-main text-white">Xác nhận đặt hàng</button>
               </div>
             </div>
           </div>
@@ -288,11 +303,14 @@ export default {
       totalBill: 0,
       widthScreen: window.innerWidth,
       modalShowSelectOne: false,
-      modalShowSelectOtherShop: false
+      modalShowSelectOtherShop: false,
+      dataComfirm: []
     }
   },
-  mounted () {
-    this.getCart()
+  async mounted () {
+    await this.$parent.showLoading()
+    await this.getCart()
+    await this.$parent.hideLoading()
   },
   methods: {
     async thankToanCheckShop () {
@@ -314,14 +332,32 @@ export default {
           }
         })
         if (inValidSelect === false) {
-          console.log(this.selected)
+          await this.$parent.showLoading()
+          var idConfirm = []
+          await this.selected.forEach(async (element) => {
+            await this.dataCart.forEach((item) => {
+              if (Number(element.substring(element.indexOf('-') + 1, element.lastIndexOf('-'))) === item.id) {
+                idConfirm.push(item.id)
+                this.dataComfirm.push(item)
+              }
+            })
+          })
+          await this.$store.dispatch('cart/confirmCart', idConfirm).then(async (result) => {
+            await this.$emit('dataComfirmOrder', this.dataComfirm)
+            this.$router.push('/cart/confirm')
+            await this.$parent.hideLoading()
+          }).catch(async (e) => {
+            await this.$parent.hideLoading()
+          })
         }
       }
     },
     async deleteProductCart (id) {
       if (confirm('Bạn có muốn xóa sản phẩm ra khỏi giỏ hàng?')) {
+        await this.$parent.showLoading()
         await this.$store.dispatch('cart/deleteProductCart', id).then(async (result) => {
-          this.getCart()
+          await this.getCart()
+          await this.$parent.hideLoading()
         }).catch((e) => {
         })
       }
@@ -339,6 +375,11 @@ export default {
     async getCart () {
       await this.$store.dispatch('cart/getMyCart').then(async (result) => {
         this.dataCart = result.data
+        await this.dataCart.forEach(async (element) => {
+          if (Number(element.quantity) > (Number(element.product_id.amount) - Number(element.product_id.ammount_product_cart))) {
+            await this.updateQuantity(element.id, (Number(element.product_id.amount) - Number(element.product_id.ammount_product_cart)))
+          }
+        })
         this.totalBill = 0
       }).catch((e) => {
       })
@@ -359,7 +400,6 @@ export default {
         return this.items ? this.selected.length === this.items.length : false
       },
       set: function (value) {
-        console.log(value)
         var selecteds = []
         if (value) {
           this.items.forEach(function (item) {

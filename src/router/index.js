@@ -29,7 +29,11 @@ import DetailProductSpecialties from '@/components/DetailProductsSpecialties/Det
 import DetailNews from '@/components/DetailNews/DetailNews'
 
 import ResultSearch from '@/components/SearchComponent/ResultComponent'
+import CartUser from '@/components/CartComponent/CartUser'
 import Cart from '@/components/CartComponent/Cart'
+import CartConfirmOrder from '@/components/CartComponent/ComfirmOrder'
+import HistoryOrder from '@/components/CartComponent/ListOrder'
+import DetailOrder from '@/components/CartComponent/DetailOrder'
 
 Vue.use(Router)
 
@@ -120,7 +124,25 @@ export default new Router({
         },
         {
           path: 'cart',
-          component: Cart
+          component: CartUser,
+          children: [
+            {
+              path: '/',
+              component: Cart
+            },
+            {
+              path: 'confirm',
+              component: CartConfirmOrder
+            },
+            {
+              path: 'history',
+              component: HistoryOrder
+            },
+            {
+              path: 'order/:id',
+              component: DetailOrder
+            }
+          ]
         }
       ]
     },

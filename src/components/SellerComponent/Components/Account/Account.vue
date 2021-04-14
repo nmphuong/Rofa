@@ -18,7 +18,7 @@
             </div>
             <div class='right__inputWrapper'>
               <label for='name'>Tên Đăng nhập</label>
-              <span>{{ userName }}</span>
+              <span>{{ userName }} </span>
             </div>
              <div class='right__inputWrapper'>
               <label for='revernue'>Doanh thu</label>

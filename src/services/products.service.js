@@ -55,7 +55,8 @@ class ProductsService {
   async getSameProduct (id) {
     var data = await getQuerySchema({
       token: false,
-      path: 'customer/get-same-product-of-seller/' + id + '?offset=0&limit=6&type=4'
+      path:
+        'customer/get-same-product-of-seller/' + id + '?offset=0&limit=6&type=4'
     })
     if (data instanceof Error) {
       return data
@@ -67,6 +68,17 @@ class ProductsService {
     var data = await postQuerySchema({
       token: false,
       path: 'customer/get-detail-news/' + id
+    })
+    if (data instanceof Error) {
+      return data
+    } else {
+      return data.data
+    }
+  }
+  async getProductSeller (id) {
+    var data = await getQuerySchema({
+      token: false,
+      path: 'sellers/get-product-of-seller/' + id + '?limit=50'
     })
     if (data instanceof Error) {
       return data

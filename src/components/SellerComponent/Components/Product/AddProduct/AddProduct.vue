@@ -1,7 +1,8 @@
 <template>
   <div class="right">
     <div class="right__content">
-        <div class="right__title">Bảng điều khiển</div>
+        <div class="right__title">
+        </div>
         <p class="right__desc">Chèn danh mục</p>
         <div class="right__formWrapper">
             <form action="" method="post" enctype="multipart/form-data">

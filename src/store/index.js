@@ -5,6 +5,7 @@ import { home } from './home.module'
 import { products } from './products.module'
 import { search } from './search.module'
 import { cart } from './cart.module'
+import { seller } from './seller.module'
 
 Vue.use(Vuex)
 
@@ -14,6 +15,7 @@ export default new Vuex.Store({
     home,
     products,
     search,
-    cart
+    cart,
+    seller
   }
 })

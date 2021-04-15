@@ -1,5 +1,8 @@
 <template>
 <div class="right">
+    <vue-headful
+      title="RoFa - Đơn hàng đang xử lý"
+    />
   <div class="right__content">
     <div class="right__title">Bảng điều khiển</div>
       <p class="right__desc">Xem sản phẩm</p>

@@ -1,5 +1,8 @@
 <template>
   <div class="order-cancel">
+    <vue-headful
+      title="RoFa - Đơn hàng đã từ chối"
+    />
     <div class="row p-0 m-0">
       <button class="btn btn-primary mb-2" @click="refresh"><b-icon-arrow-repeat></b-icon-arrow-repeat> Refresh</button>
       <b-link :to="'/cart/order/' + element.id" :class="((index % 2 === 0) ? 'bg-lm ' : 'bg-ev ') + 'col-12 p-0 m-0 py-3 bg-lm text-dark'" v-for="(element, index) in dataCancelHistory" :key="index">

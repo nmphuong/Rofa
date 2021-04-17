@@ -1,8 +1,5 @@
 <template>
   <div class="page">
-    <vue-headful
-      title="RoFa - Trang chủ"
-    />
     <div class="w-100">
       <div class="container-fluid p-0 m-0">
         <router-view
@@ -43,7 +40,9 @@
     <div class="ads">
       <b-modal id="ads-md" centered v-model="modalAds" hide-footer hide-header>
         <b-icon-x-circle-fill @click="() => {this.modalAds = false}" class="close-modal"></b-icon-x-circle-fill>
-        <div class="cnt-ads" style="background-image: url('https://cf.shopee.vn/file/357a79dcaa7c695ca8557d8eb4f63107_xxhdpi')"></div>
+        <b-link to="/">
+          <div class="cnt-ads" :style="{backgroundImage: 'url(' + srcAds + ')'}"></div>
+        </b-link>
       </b-modal>
     </div>
   </div>
@@ -75,12 +74,14 @@ export default {
       valueSearchType: null,
       valueSearchLocation: null,
       valueSearchPrice: null,
-      pathCheckRoute: ['/cart']
+      pathCheckRoute: ['/cart', '/cart/history/order', '/cart/order', '/confirm'],
+      srcAds: ''
     }
   },
   async mounted () {
-    this.showModal()
-    if (this.pathCheckRoute.includes(this.$router.history.current.path.substring(this.$router.history.current.path.lastIndexOf('/'), this.$router.history.current.path.length))) {
+    await this.showModal()
+    await this.getAds()
+    if (this.pathCheckRoute.includes(this.$router.history.current.path.substring(0, this.$router.history.current.path.lastIndexOf('/'))) || this.pathCheckRoute.includes(this.$router.history.current.name)) {
       this.checkProfile()
     }
   },
@@ -99,6 +100,12 @@ export default {
         zIndex: 99999999,
         backgroundColor: '#fff',
         loader: 'spinner'
+      })
+    },
+    async getAds () {
+      await this.$store.dispatch('home/getBanners', 9).then(async (banner) => {
+        this.srcAds = banner.data.data[0].banner_mini
+      }).catch((e) => {
       })
     },
     hideLoading () {
@@ -158,7 +165,7 @@ export default {
   },
   watch: {
     '$route' (to, from) {
-      if (this.pathCheckRoute.includes(to.path)) {
+      if (this.pathCheckRoute.includes(this.$router.history.current.path.substring(0, this.$router.history.current.path.lastIndexOf('/'))) || this.pathCheckRoute.includes(this.$router.history.current.name)) {
         this.checkProfile()
       }
     }
@@ -190,5 +197,8 @@ export default {
   right: 0;
   top: 0;
   color: #9c9c9c;
+}
+#ads-md___BV_modal_outer_ {
+  z-index: 99999999;
 }
 </style>

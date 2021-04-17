@@ -1,5 +1,8 @@
 <template>
   <div class="contact">
+    <vue-headful
+      title="RoFa - Liên hệ"
+    />
     <!--fromlien hệ-->
     <section>
         <div class="row m-0 p-0 py-5">

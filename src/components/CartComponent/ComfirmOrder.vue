@@ -1,5 +1,8 @@
 <template>
   <div class="w-100">
+    <vue-headful
+      title="RoFa - Xác nhận đơn hàng"
+    />
     <div class="row p-0 m-0">
       <div class="col-12 p-0 m-0 main pb-5">
         <!-- name page -->

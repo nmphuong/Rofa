@@ -23,6 +23,9 @@ export const products = {
     },
     async addRate ({ commit }, dataRate) {
       return ProductsService.addRate(dataRate)
+    },
+    async addProduct ({ commit }, dataProduct) {
+      return ProductsService.addProduct(dataProduct)
     }
   }
 }

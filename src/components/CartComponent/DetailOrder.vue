@@ -20,7 +20,7 @@
                 <th>Giá</th>
                 <th>Số lượng</th>
                 <th>Thành tiền</th>
-                <th>Đánh giá</th>
+                <th v-if="Number(dataCart[0].order_id.status_order) === 1">Đánh giá</th>
               </tr>
             </thead>
             <tbody class="text-center">
@@ -54,7 +54,7 @@
                   <span class="text-danger font-weight-bold">{{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(Number(element.price))}}</span>
                 </td>
                 <td>
-                  <button class="btn color-bg-main text-white" @click="showModalAddRate(element.product_id.id)">Đánh giá sản phẩm</button>
+                  <button v-if="Number(dataCart[0].order_id.status_order) === 1" class="btn color-bg-main text-white" @click="showModalAddRate(element.product_id.id)">Đánh giá sản phẩm</button>
                 </td>
               </tr>
             </tbody>
@@ -115,7 +115,7 @@
                         <span>Số lượng: {{ element.quantity }}</span>
                       </div>
                       <span class="text-danger font-weight-bold">{{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(Number(element.price))}}</span>
-                      <div><button class="btn color-bg-main text-white" @click="showModalAddRate(element.product_id.id)">Đánh giá sản phẩm</button></div>
+                      <div><button v-if="Number(dataCart[0].order_id.status_order) === 1" class="btn color-bg-main text-white" @click="showModalAddRate(element.product_id.id)">Đánh giá sản phẩm</button></div>
                     </div>
                   </div>
                 </div>
@@ -176,7 +176,7 @@
                     <span>Số lượng: {{ element.quantity }}</span>
                   </div>
                   <span class=" text-danger font-weight-bold">{{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(Number(element.price))}}</span>
-                  <div><button class="btn color-bg-main text-white" @click="showModalAddRate(element.product_id.id)">Đánh giá sản phẩm</button></div>
+                  <div><button v-if="Number(dataCart[0].order_id.status_order) === 1" class="btn color-bg-main text-white" @click="showModalAddRate(element.product_id.id)">Đánh giá sản phẩm</button></div>
                 </div>
               </div>
             </div>

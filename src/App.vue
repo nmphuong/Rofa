@@ -27,7 +27,6 @@ export default {
     await this.checkCustomer()
     await this.checkSeller()
     await this.info()
-    console.log(this.$router)
   },
   methods: {
     checkCustomer () {

@@ -4,8 +4,10 @@
       <div class="header__menu">
         <b-navbar toggleable="lg" type="dark" class="header">
           <b-navbar-brand class="logo rofa-logo flex-grow-1 d-flex justify-content-center align-items-center" href="#">
-            <img class="logo" src="@/assets/logo.png" alt="logo-rofa">
-            <span class="h5">{{headerLang.nongSanRoFa}}</span>
+            <b-link class="color-main" to="/">
+              <img class="logo" src="@/assets/logo.png" alt="logo-rofa">
+              <span class="h5">{{headerLang.nongSanRoFa}}</span>
+            </b-link>
           </b-navbar-brand>
           <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
           <b-collapse id="nav-collapse" is-nav class="justify-content-start text-center">

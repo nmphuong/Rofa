@@ -14,6 +14,12 @@
         <hr />
       </div>
       <div class="col-12">
+        <Shop :detailShop="dataDetailProduct.seller_id" />
+      </div>
+      <div class="col-12 p-0 py-2 m-0" v-if="dataSameProduct.length !== 0 && dataRateAmount.length !== 0">
+        <hr />
+      </div>
+      <div class="col-12">
         <Description :longDescription="dataDetailProduct.long_desc" :shortDescription="dataDetailProduct.short_desc" />
       </div>
       <div class="col-12 p-0 py-2 m-0" v-if="dataSameProduct.length !== 0 && dataRateAmount.length !== 0">
@@ -37,6 +43,7 @@ import Images from './components/Images'
 import InfoProduct from './components/InfoProduct'
 import Description from './components/Description'
 import Rate from './components/Rate'
+import Shop from './components/Shop'
 import RalatedProducts from './components/RelatedProducts'
 export default {
   name: 'DetailProduct',
@@ -132,7 +139,8 @@ export default {
     InfoProduct,
     Description,
     Rate,
-    RalatedProducts
+    RalatedProducts,
+    Shop
   }
 }
 </script>

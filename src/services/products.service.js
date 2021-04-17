@@ -1,4 +1,4 @@
-import { getQuerySchema, postQuerySchema } from '../api/api.call'
+import { getQuerySchema, postDataSchema, postQuerySchema } from '../api/api.call'
 
 class ProductsService {
   async getDetailProducts (id) {
@@ -104,6 +104,31 @@ class ProductsService {
     var data = await getQuerySchema({
       token: false,
       path: 'sellers/get-product-of-seller/' + id + '?limit=50'
+    })
+    if (data instanceof Error) {
+      return data
+    } else {
+      return data.data
+    }
+  }
+  async addProduct (dataProduct) {
+    var keys = Object.keys(dataProduct)
+    let formData = new FormData()
+    keys.forEach(key => {
+      if (key === 'images') {
+        if (dataProduct[key].length !== 0) {
+          for (var i = 0; i < dataProduct[key].length; i++) {
+            formData.append(key + '[' + i + ']', dataProduct[key][i])
+          }
+        }
+      } else {
+        formData.append(key, dataProduct[key])
+      }
+    })
+    var data = await postDataSchema({
+      tokenSeller: true,
+      data: formData,
+      path: 'sellers/add-product'
     })
     if (data instanceof Error) {
       return data

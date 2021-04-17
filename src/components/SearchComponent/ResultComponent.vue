@@ -1,5 +1,8 @@
 <template>
   <div class="result-search container-fluid">
+    <vue-headful
+      title="RoFa - Kết quả tìm kiếm"
+    />
     <SearchComponent
       :typeSearch="valueTypeSearch"
       :locationSearch="valueLocationSearch"

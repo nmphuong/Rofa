@@ -1,5 +1,8 @@
 <template>
   <div class="home">
+    <vue-headful
+      title="RoFa - Trang chủ"
+    />
     <div class="w-100 p-0 m-0">
       <b-carousel
         id="carousel-1"
@@ -70,7 +73,7 @@ export default {
       await this.$parent.hideLoading()
     },
     async handleGetBanner () {
-      await this.$store.dispatch('home/getBanners').then((result) => {
+      await this.$store.dispatch('home/getBanners', 0).then((result) => {
         this.bannerHome = result.data.data
       }).catch((e) => {
       })

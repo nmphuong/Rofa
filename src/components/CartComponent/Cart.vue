@@ -1,5 +1,8 @@
 <template>
   <div class="w-100">
+    <vue-headful
+      title="RoFa - Giỏ hàng"
+    />
     <div class="row p-0 m-0">
       <div class="col-12 p-0 m-0 main pb-5" v-if="dataCart.length !== 0">
         <!-- name page -->

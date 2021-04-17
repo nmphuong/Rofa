@@ -1,5 +1,8 @@
 <template>
   <div>
+    <vue-headful
+      title="RoFa - Giới thiệu"
+    />
     <InfoTop />
     <InfoCenter />
     <InfoBottom />

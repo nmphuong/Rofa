@@ -100,10 +100,10 @@ class ProductsService {
       return data.data
     }
   }
-  async getProductSeller (id) {
+  async getProductSeller () {
     var data = await getQuerySchema({
-      token: false,
-      path: 'sellers/get-product-of-seller/' + id + '?limit=50'
+      tokenSeller: true,
+      path: 'sellers/get-product-of-seller?offset=0&limit=50'
     })
     if (data instanceof Error) {
       return data

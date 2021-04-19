@@ -6,65 +6,53 @@
   <div class="right__content">
     <div class="right__title">Bảng điều khiển</div>
       <p class="right__desc">Xem sản phẩm</p>
-        <div class="right__table">
-          <div class="right__tableWrapper">
-            <table>
-                                      <thead>
-                                          <tr>
-                                              <th>STT</th>
-                                              <th>Tên sản phẩm</th>
-                                              <th>Hình ảnh</th>
-                                              <th>Giá SP</th>
-                                              <th>Đã bán</th>
-                                              <th>Từ khoá</th>
-                                              <th>Thời gian</th>
-                                              <th>Sửa</th>
-                                              <th>Xoá</th>
-                                          </tr>
-                                      </thead>
-                                      <tbody>
-                                          <tr>
-                                              <td data-label="STT">1</td>
-                                              <td data-label="Tên sản phẩm">Dada Dress</td>
-                                              <td data-label="Hình ảnh"><img src="images/product1.jpg" alt=""></td>
-                                              <td data-label="Giá SP">590.000 ₫</td>
-                                              <td data-label="Đã bán">1</td>
-                                              <td data-label="Từ khoá">dress, vay</td>
-                                              <td data-label="Thời gian">2020-07-13 21:31:05</td>
-                                              <td data-label="Sửa" class="right__iconTable"><a href=""><img
-                                                          src="assets/icon-edit.svg" alt=""></a></td>
-                                              <td data-label="Xoá" class="right__iconTable"><a href=""><img
-                                                          src="assets/icon-trash-black.svg" alt=""></a></td>
-                                          </tr>
-                                          <tr>
-                                              <td data-label="STT">2</td>
-                                              <td data-label="Tên sản phẩm">Cobi Top, Tuta Skirt</td>
-                                              <td data-label="Hình ảnh"><img src="images/product2.jpg" alt=""></td>
-                                              <td data-label="Giá SP">810.000 ₫</td>
-                                              <td data-label="Đã bán">0</td>
-                                              <td data-label="Từ khoá">top skirt</td>
-                                              <td data-label="Thời gian">2020-07-13 22:19:01</td>
-                                              <td data-label="Sửa" class="right__iconTable"><a href=""><img
-                                                          src="assets/icon-edit.svg" alt=""></a></td>
-                                              <td data-label="Xoá" class="right__iconTable"><a href=""><img
-                                                          src="assets/icon-trash-black.svg" alt=""></a></td>
-                                          </tr>
-                                          <tr>
-                                              <td data-label="STT">3</td>
-                                              <td data-label="Tên sản phẩm">Beda Dress</td>
-                                              <td data-label="Hình ảnh"><img src="images/product3.jpg" alt=""></td>
-                                              <td data-label="Giá SP">590.000 ₫</td>
-                                              <td data-label="Đã bán">1</td>
-                                              <td data-label="Từ khoá">dress, vay</td>
-                                              <td data-label="Thời gian">2020-07-13 21:30:41</td>
-                                              <td data-label="Sửa" class="right__iconTable"><a href=""><img
-                                                          src="assets/icon-edit.svg" alt=""></a></td>
-                                              <td data-label="Xoá" class="right__iconTable"><a href=""><img
-                                                          src="assets/icon-trash-black.svg" alt=""></a></td>
-                                          </tr>
-                                      </tbody>
-            </table>
+      <div class='right__table'>
+        <div class='right__tableWrapper'>
+          <table class="table-table-striped">
+            <thead>
+              <tr>
+                <th>STT</th>
+                <th>MÃ ĐƠN HÀNG</th>
+                <th>SỐ LƯỢNG</th>
+                <th>TỔNG TIỀN</th>
+                <th>THỜI GIAN</th>
+                <th>TRẠNG THÁI</th>
+                <th>XEM CHI TIẾT</th>
+              </tr>
+            </thead>
+            <tbody >
+              <tr>
+                <td data-label='STT'></td>
+                <td data-label='MÃ ĐƠN HANG'></td>
+                <td data-label='SỐ LƯỢNG'>
+                 <div class=''></div>
+                </td>
+                <td data-label='TỔNG TIỀN'>
+                  <span></span>
+                </td>
+                <td data-label='THỜI GIAN'></td>
+                <td data-label='TRẠNG THÁI'></td>
+                <td data-label='CHI TIẾT' class='right__iconTable'>
+                  <b-button class="color-bg-main">Xem chi tiết</b-button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div>
+      <b-modal id="modal-detail" centered hide-footer size='lg' scrollable >
+        <div class="row">
+          <div class="col-md-4">
+            <div class="img-product"></div>
           </div>
+          <div class="col-md-8">
+            <div>
+              <span>Mô tả</span>
+            </div>
+          </div>
+        </div>
+      </b-modal>
     </div>
   </div>
 </div>

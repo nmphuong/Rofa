@@ -1,4 +1,4 @@
-import { postDataSchema } from '../api/api.call'
+import { postDataSchema, getQuerySchema } from '../api/api.call'
 
 class SellerService {
   async updateAccount (user) {
@@ -16,6 +16,17 @@ class SellerService {
       return data // Trả về lỗi
     } else {
       return data // Trả về success
+    }
+  }
+  async getHistoryOrderCancel () {
+    var data = await getQuerySchema({
+      tokenSeller: true,
+      path: 'sellers/get-history-order?type=3'
+    })
+    if (data instanceof Error) {
+      return data
+    } else {
+      return data.data
     }
   }
 }

@@ -1,7 +1,7 @@
 <template>
   <div class='right'>
     <div class='right__content'>
-      <div class='right__title'>{{ ProductLang.Dashboarh }}</div>
+      <div class='right__title'>{{ ProductLang.Dashboard }}</div>
       <p class='right__desc'>{{ ProductLang.ViewProducts }}</p>
       <div class='right__table'>
         <div class='right__tableWrapper'>
@@ -32,7 +32,7 @@
                 <td data-label='Đã bán'>{{item.ammount_product_cart}}</td>
                 <td data-label='Từ khoá'>{{item.status == 1 ? 'Đang hoạt động' : item.status == 3 ? 'Sản phẩm đã ẩn' : 'Sản phẩm hết hạn' }}</td>
                 <td data-label='Thời gian'>{{item.created_at}}</td>
-                <td data-label='Sửa' class='right__iconTable'>
+                <td data-label='Sư' class='right__iconTable'>
                   <b-button @click="showModal(item)" class="color-bg-main">Xem chi tiết</b-button>
                 </td>
                 <td data-label='Xoá' class='right__iconTable'>
@@ -54,6 +54,7 @@
           </div>
           <div class="col-md-8">
             <div>
+              <span>Mô tả</span>
               <span>{{itemDetail.long_desc}}</span>
             </div>
           </div>
@@ -92,7 +93,7 @@ export default {
       await this.getProduct()
     },
     async getProduct () {
-      await this.$store.dispatch('seller/getProductSeller', this.idseller).then(async (result) => {
+      await this.$store.dispatch('seller/getProductSeller').then(async (result) => {
         console.log(result)
         this.getProductSeller = result.data
       }).catch((e) => {

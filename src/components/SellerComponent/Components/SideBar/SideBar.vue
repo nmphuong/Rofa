@@ -45,6 +45,7 @@
             <b-link class='left__link' to="/seller/order/processing">Đang xử lý</b-link>
             <b-link class='left__link' to="/seller/order/transport">Đang Vân Chuyển</b-link>
             <b-link class='left__link' to="/seller/order/finish">Hoàn Thành</b-link>
+            <b-link class='left__link' to="/seller/order/canceloder">Đã Hủy</b-link>
           </div>
         </li>
         <li class='left__menuItem'>

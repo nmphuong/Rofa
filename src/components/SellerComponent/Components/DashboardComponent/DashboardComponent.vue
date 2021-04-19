@@ -21,14 +21,14 @@
           </div>
         </a>
         <a class='right__card' href='view_p_category.html'>
-          <div class='right__cardTitle'>Danh Mục</div>
+          <div class='right__cardTitle'>Đang Xử Lý</div>
           <div class='right__cardNumber'>4</div>
           <div class='right__cardDesc'>
             Xem Chi Tiết <b-icon-arrow-right class="icon"></b-icon-arrow-right>
           </div>
         </a>
         <a class='right__card' href='view_orders.html'>
-          <div class='right__cardTitle'>Đơn Hàng</div>
+          <div class='right__cardTitle'>Đang Vận Chuyển</div>
           <div class='right__cardNumber'>72</div>
           <div class='right__cardDesc'>
             Xem Chi Tiết <b-icon-arrow-right class="icon"></b-icon-arrow-right>

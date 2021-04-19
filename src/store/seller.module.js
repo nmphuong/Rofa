@@ -7,8 +7,11 @@ export const seller = {
     async updateAccount ({ commit }, dataUser) {
       return SellerService.updateAccount(dataUser)
     },
-    async getProductSeller ({ commit }, id) {
-      return ProductsService.getProductSeller(id)
+    async getProductSeller ({ commit }) {
+      return ProductsService.getProductSeller()
+    },
+    async getHistoryOrderCancel ({ commit }) {
+      return SellerService.getHistoryOrderCancel()
     }
   }
 }

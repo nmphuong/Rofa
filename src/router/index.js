@@ -38,6 +38,7 @@ import DetailOrder from '@/components/CartComponent/DetailOrder'
 import Finish from '@/components/SellerComponent/Components/SingleOrderComponent/Finish'
 import Processing from '@/components/SellerComponent/Components/SingleOrderComponent/Processing'
 import Transport from '@/components/SellerComponent/Components/SingleOrderComponent/Transport'
+import CancelOder from '@/components/SellerComponent/Components/SingleOrderComponent/CancelOder'
 
 import Revenue from '@/components/SellerComponent/Components/Revenue/Revenue'
 import Account from '@/components/SellerComponent/Components/Account/Account'
@@ -172,6 +173,10 @@ export default new Router({
         {
           path: 'order/finish',
           component: Finish
+        },
+        {
+          path: 'order/canceloder',
+          component: CancelOder
         },
         {
           path: 'order/processing',
